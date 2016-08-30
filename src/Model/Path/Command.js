@@ -8,7 +8,7 @@ export class Command {
 
 export class CurveCommand extends Command{
 	constructor(p1, p2){
-		if (typeof p1 !== Point || typeof p2 !== Point) {
+		if (!(p1 instanceof Point) ||  !(p2 instanceof Point)) {
 			console.error('CurveCommand init error');
 		}
 		super();
