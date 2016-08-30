@@ -1,0 +1,41 @@
+{
+  "coverage": "20%",
+  "expectCount": 20,
+  "actualCount": 4,
+  "files": {
+    "src/Model/Path/Command.js": {
+      "expectCount": 7,
+      "actualCount": 0,
+      "undocumentLines": [
+        3,
+        9,
+        20,
+        10,
+        4,
+        15,
+        16
+      ]
+    },
+    "src/Model/Path/Path.js": {
+      "expectCount": 6,
+      "actualCount": 4,
+      "undocumentLines": [
+        24,
+        11
+      ]
+    },
+    "src/Model/Point.js": {
+      "expectCount": 7,
+      "actualCount": 0,
+      "undocumentLines": [
+        3,
+        4,
+        5,
+        10,
+        14,
+        6,
+        7
+      ]
+    }
+  }
+}
