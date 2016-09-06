@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "ava",
-    "start": "watchify src/main.js -v --debug -t babelify -o public/js/main.js"
+    "start": "watchify src/main.js -v --debug -t babelify -o public/js/main.js",
+    "server": "http-server public"
   },
   "author": "",
   "license": "ISC",
