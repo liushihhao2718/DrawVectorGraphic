@@ -14,6 +14,7 @@ export default class Path {
 	}
 
 	addNode(node){
+		node.setParent(this);
 		this.nodes.push(node);
 		this.drawPath();
 	}
@@ -37,5 +38,18 @@ export default class Path {
 
 	drawPath(){
 		this.view.attr('d', this.makePathDescription());
+	}
+
+	firstNode(){
+		return this.nodes[0];
+	}
+
+	lastNode(){
+		return this.nodes.last();
+	}
+	clearSelected(){
+		for(let node of this.nodes){
+			node.setSelected(false);
+		}
 	}
 }

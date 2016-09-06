@@ -1,5 +1,3 @@
-// import Snap from 'snapsvg';
-
 export default class Node{
 	constructor(key, center, type,target){
 		this.key = key;//uuid
@@ -8,9 +6,13 @@ export default class Node{
 		this.center = center;// ( x, y )
 		this.view = undefined;
 		this.target = target;//append to svg
-
+		this.parent = undefined;
 		this.makeNode();
 
+	}
+
+	setParent(parent) {
+		this.parent = parent;
 	}
 	makeRect(){
 		let width = 10,
@@ -24,7 +26,8 @@ export default class Node{
 	makeNode() {
 		
 		let	rect = this.makeRect(),
-			view = this.target.rect(rect.x, rect.y, rect.width, rect.height);
+			view = this.target.rect(rect.x, rect.y, 
+				rect.width, rect.height);
 		
 		view.attr({
 			id: this.key,
