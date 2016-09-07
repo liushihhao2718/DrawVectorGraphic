@@ -1,3 +1,6 @@
+import Path from './Path';
+import Node from './Node';
+
 class Tool{
 	constructor(){}
 
@@ -22,35 +25,48 @@ class DrawTool extends Tool{
 	}
 
 	tapNode(event){
-
+		if (!this.handle) return;
+		
 		let node = this.delegate.getNode(event),
-			firstNode = this.delegate.handle.firstNode();
+			firstNode = this.handle.firstNode();
 
-		if (this.delegate.handle.nodes.length > 2 && node === firstNode) {
-			this.delegate.handle.closed = true;
-			this.delegate.handle.drawPath();
-			this.delegate.handle = undefined;
+		if (this.handle.nodes.length > 2 && node === firstNode) {
+			this.handle.closed = true;
+			this.handle.drawPath();
+			this.handle = undefined;
 		}
 	}
 
 	tapBackground(){
 		let point = this.delegate.positionOnDrawingPanel(event);
-		this.delegate.makePath(point);
+		this.makePath(point);
 	}
-	
-	doubleTapNode(){}
 
-	dragNode(){}
+	makePath(point){
+		if (!this.handle) {
+			this.handle = new Path(`p-${this.pathIndex}`, this.delegate.target);
+			this.delegate.pathIndex++;
+		}
+
+		let	node = this.makeLineNode(point);
+
+		this.handle.addNode(node);
+	}
+
+	makeLineNode(point) {
+		let key = this.delegate.getKey(this.delegate.idIndex),
+			node = new Node(key, point, 'line', this.delegate.target);
+		this.delegate.nodeMap.set(key, node);
+		this.delegate.idIndex++;
+
+		return node;
+	}
 }
 
 class SelectTool extends Tool{
-	constructor(){
-		super();
-	}
 
 	tapNode(event){
 		let node = this.delegate.getNode(event);
-		this.delegate.handle = node.parent;
 		node.toggleSelected();
 	}
 
@@ -60,7 +76,13 @@ class SelectTool extends Tool{
 	
 	doubleTapNode(event){}
 
-	dragNode(event){}
+	dragNode(event){
+		let node = this.delegate.getNode(event),
+			x = node.center.x + event.dx,
+			y = node.center.y + event.dy;
+		node.moveTo({x, y});
+		node.parent.drawPath();
+	}
 }
 
 export {Tool, DrawTool, SelectTool};

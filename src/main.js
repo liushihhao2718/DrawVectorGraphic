@@ -25,7 +25,6 @@ function setKeyUP(){
 	toolHandler.set(80, pen);//Pp => path tool (drawing tool)
 	window.onkeyup = function(e) {
 		var key = e.keyCode ? e.keyCode : e.which;
-		nodeController.clearHandle();
 		nodeController.tool = toolHandler.get(key);
 	};
 }
