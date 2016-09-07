@@ -5,20 +5,23 @@ export default class Path {
 		this.key = key;
 		this.closed = false;
 
-		this.view = this.target.path('')
-			.attr({
-				fill:this.closed ?'#000':'none',
-				stroke:'#000',
-				strokeWidth:'2'
-			});
+		this.segmnetMap = new Map();
 	}
 
 	addNode(node){
 		node.setParent(this);
 		this.nodes.push(node);
-		this.drawPath();
+
+		
+		if (this.noSegment()) return;
+		let lastOne = this.nodes.length - 1;
+		this.drawLineSegment(this.nodes[lastOne-1],
+			this.nodes[lastOne]);
 	}
 
+	noSegment(){
+		return (this.nodes.length <= 1);
+	}
 	makePathDescription(){
 		let path_description = '',
 			flag;
@@ -39,17 +42,46 @@ export default class Path {
 	drawPath(){
 		this.view.attr('d', this.makePathDescription());
 	}
-
+	drawLineSegment(p1, p2){
+		let d = this.makeLineDescript(p1, p2),
+			segment = this.target.path(d),
+			segmentKey = `${this.key}-${this.nodes.indexOf(p1)}`;
+		segment.attr({
+			id:segmentKey,
+			class:'segment'
+		});
+		this.segmnetMap.set(segmentKey, segment);
+	}
+	makeLineDescript(p1, p2){
+		//Mx1 y1 L x2 y2
+		return `M ${p1.center.x} ${p1.center.y}`
+			+` L ${p2.center.x} ${p2.center.y}`;
+	}
+	updateSegment(present){//0
+		let	size = this.nodes.length,//3
+			prev = (present - 1 + size)%size,//2
+			next = (present + 1 + size)%size,//1
+			prevSeg = this.segmnetMap.get(`${this.key}-${prev}`),
+			presentSeg = this.segmnetMap.get(`${this.key}-${present}`),
+			left_d = this.makeLineDescript(this.nodes[prev], this.nodes[present]),
+			right_d = this.makeLineDescript(this.nodes[present], this.nodes[next]);
+		prevSeg.attr('d', left_d);
+		presentSeg.attr('d', right_d);
+	}
 	firstNode(){
 		return this.nodes[0];
 	}
 
 	lastNode(){
-		return this.nodes.last();
+		return this.nodes[this.nodes.length-1];
 	}
 	clearSelected(){
 		for(let node of this.nodes){
 			node.setSelected(false);
 		}
+	}
+	closePath(){
+		this.closed = true;
+		this.drawLineSegment(this.lastNode(), this.firstNode());
 	}
 }

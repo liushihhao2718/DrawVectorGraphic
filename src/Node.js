@@ -31,11 +31,7 @@ export default class Node{
 		
 		view.attr({
 			id: this.key,
-			'class':'node',
-			fill: 'none',
-			strokeWidth: 1,
-			'stroke': '#6699ff',
-			style: 'pointer-events:all'
+			'class':'node'
 		});
 
 		this.view = view;
@@ -56,5 +52,8 @@ export default class Node{
 		this.selected = selected;
 		this.view.attr('fill', selected?'#6699ff':'none');
 	}
-
+	updateBesideSegment(){
+		let nodeIndex = this.parent.nodes.indexOf(this);
+		this.parent.updateSegment(nodeIndex);
+	}
 }

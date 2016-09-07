@@ -31,26 +31,23 @@ class DrawTool extends Tool{
 			firstNode = this.handle.firstNode();
 
 		if (this.handle.nodes.length > 2 && node === firstNode) {
-			this.handle.closed = true;
-			this.handle.drawPath();
+			this.handle.closePath();
 			this.handle = undefined;
 		}
 	}
 
-	tapBackground(){
+	tapBackground(event){
 		let point = this.delegate.positionOnDrawingPanel(event);
-		this.makePath(point);
-	}
-
-	makePath(point){
 		if (!this.handle) {
-			this.handle = new Path(`p-${this.pathIndex}`, this.delegate.target);
-			this.delegate.pathIndex++;
+			this.makePath(point);	
 		}
 
-		let	node = this.makeLineNode(point);
+		this.addNodeToHandle(point);
+	}
 
-		this.handle.addNode(node);
+	makePath(){
+		this.handle = new Path(`p-${this.delegate.pathIndex}`, this.delegate.target);
+		this.delegate.pathIndex++;
 	}
 
 	makeLineNode(point) {
@@ -61,12 +58,18 @@ class DrawTool extends Tool{
 
 		return node;
 	}
+
+	addNodeToHandle(point){
+		let	node = this.makeLineNode(point);
+		this.handle.addNode(node);
+	}
 }
 
 class SelectTool extends Tool{
 
 	tapNode(event){
 		let node = this.delegate.getNode(event);
+		this.delegate.selectedNodes.push(node);
 		node.toggleSelected();
 	}
 
@@ -81,7 +84,7 @@ class SelectTool extends Tool{
 			x = node.center.x + event.dx,
 			y = node.center.y + event.dy;
 		node.moveTo({x, y});
-		node.parent.drawPath();
+		node.updateBesideSegment();
 	}
 }
 

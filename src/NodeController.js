@@ -9,7 +9,7 @@ export default class NodeController{
 		this.pathIndex = 0;
 		this.tool = new DrawTool();
 		this.tool.setDelegate(this);
-
+		this.selectedNodes = [];
 		this.setListener();
 	}
 	setListener() {
@@ -27,6 +27,7 @@ export default class NodeController{
 		if (event.target.classList[0] !== 'node') return;
 		this.tool.dragNode(event);	
 	}
+
 	tapNode(event){
 		if (event.target.classList[0] !== 'node') return;
 		this.tool.tapNode(event);
@@ -36,9 +37,8 @@ export default class NodeController{
 		this.tool.doubleTapNode(event);
 	}
 	tapBackground(event){
-		// console.log(this.tool.constructor.name);
 		if (event.target.nodeName !== 'svg') return;
-		this.tool.tapBackground();
+		this.tool.tapBackground(event);
 	}
 
 	

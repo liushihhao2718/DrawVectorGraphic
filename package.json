@@ -7,7 +7,7 @@
     "test": "ava",
     "start": "watchify src/main.js -v --debug -t babelify -o public/js/main.js",
     "server": "http-server public",
-    "build":"browserify src/main.js -v -t babelify -o public/js/main.js"
+    "build": "browserify src/main.js -v -t babelify -o public/js/main.js"
   },
   "author": "",
   "license": "ISC",
@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "interact.js": "^1.2.6",
+    "lodash": "^4.15.0",
     "mathjs": "^3.4.1",
     "snapsvg": "^0.4.0",
     "uuid": "^2.0.2"

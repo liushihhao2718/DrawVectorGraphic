@@ -1,6 +1,6 @@
 import Snap from 'snapsvg';
 import NodeController from './NodeController';
-import {Tool, DrawTool, SelectTool} from './Tool';
+import {DrawTool, SelectTool} from './Tool';
 let svg = Snap('#drawing_panel');
 let nodeController = new NodeController(svg);
 initSVG();

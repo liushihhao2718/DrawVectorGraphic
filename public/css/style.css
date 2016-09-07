@@ -1,0 +1,11 @@
+.node {
+	fill: none;
+	stroke-width: 1;
+	stroke: #6699ff;
+	pointer-events:all;
+}
+
+.segment {
+	stroke:#000;
+	stroke-width:2;
+}
