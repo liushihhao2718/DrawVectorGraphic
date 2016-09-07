@@ -50,7 +50,8 @@ export default class Node{
 	}
 	setSelected(selected){
 		this.selected = selected;
-		this.view.attr('fill', selected?'#6699ff':'none');
+		// this.view.attr('fill', selected?'#6699ff':'none');
+		this.view.attr('class', selected? 'node select':'node');
 	}
 	updateBesideSegment(){
 		let nodeIndex = this.parent.nodes.indexOf(this);

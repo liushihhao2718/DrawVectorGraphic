@@ -1,0 +1,36 @@
+{
+  "name": "DrawVector",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "ava",
+    "start": "watchify src/main.js -v --debug -t babelify -o public/js/main.js",
+    "server": "http-server public",
+    "build": "browserify src/main.js -v -t babelify -o public/js/main.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "ava": "^0.16.0",
+    "babel-plugin-transform-flow-strip-types": "^6.8.0",
+    "babelify": "^7.3.0",
+    "watchify": "3.7.0"
+  },
+  "dependencies": {
+    "interact.js": "^1.2.6",
+    "lodash": "^4.15.0",
+    "mathjs": "^3.4.1",
+    "snapsvg": "^0.4.0",
+    "uuid": "^2.0.2"
+  },
+  "ava": {
+    "files": [
+      "test/*.js"
+    ],
+    "require": [
+      "babel-register"
+    ],
+    "babel": "inherit"
+  }
+}

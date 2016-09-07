@@ -40,7 +40,12 @@ export default class NodeController{
 		if (event.target.nodeName !== 'svg') return;
 		this.tool.tapBackground(event);
 	}
-
+	cleanSelectedNodes(){
+		for (var i = this.selectedNodes.length - 1; i >= 0; i--) {
+			this.selectedNodes[i].setSelected(false);
+		}
+		this.selectedNodes.splice(0, this.selectedNodes.length);
+	}
 	
 	getKey(index) {
 		return `n-${index}`;

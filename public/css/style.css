@@ -5,6 +5,10 @@
 	pointer-events:all;
 }
 
+.node.select {
+	fill: #6699ff;
+}
+
 .segment {
 	stroke:#000;
 	stroke-width:2;

@@ -1,0 +1,2455 @@
+[
+  {
+    "__docId__": 0,
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/Node.js",
+    "memberof": null,
+    "longname": "src/Node.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "export default class Node{\n\tconstructor(key, center, type,target){\n\t\tthis.key = key;//uuid\n\t\tthis.selected = false;\n\t\tthis.type = 'line';//type: line, curve, smooth, offcurve\n\t\tthis.center = center;// ( x, y )\n\t\tthis.view = undefined;\n\t\tthis.target = target;//append to svg\n\t\tthis.parent = undefined;\n\t\tthis.makeNode();\n\n\t}\n\n\tsetParent(parent) {\n\t\tthis.parent = parent;\n\t}\n\tmakeRect(){\n\t\tlet width = 10,\n\t\t\theight = width,\n\t\t\thelfWidth = width/2,\n\t\t\tx = this.center.x - helfWidth,\n\t\t\ty = this.center.y - helfWidth;\n\n\t\treturn {width, height, x, y};\n\t}\n\tmakeNode() {\n\t\t\n\t\tlet\trect = this.makeRect(),\n\t\t\tview = this.target.rect(rect.x, rect.y, \n\t\t\t\trect.width, rect.height);\n\t\t\n\t\tview.attr({\n\t\t\tid: this.key,\n\t\t\t'class':'node'\n\t\t});\n\n\t\tthis.view = view;\n\t}\n\tmoveTo(point){\n\t\tthis.center = point;\n\t\tlet rect = this.makeRect();\n\t\tthis.view.attr(\n\t\t\t{\n\t\t\t\t'x': rect.x,\n\t\t\t\t'y': rect.y\n\t\t\t});\n\t}\n\ttoggleSelected(){\n\t\tthis.setSelected(!this.selected);\n\t}\n\tsetSelected(selected){\n\t\tthis.selected = selected;\n\t\tthis.view.attr('fill', selected?'#6699ff':'none');\n\t}\n\tupdateBesideSegment(){\n\t\tlet nodeIndex = this.parent.nodes.indexOf(this);\n\t\tthis.parent.updateSegment(nodeIndex);\n\t}\n}"
+  },
+  {
+    "__docId__": 1,
+    "kind": "class",
+    "static": true,
+    "variation": null,
+    "name": "Node",
+    "memberof": "src/Node.js",
+    "longname": "src/Node.js~Node",
+    "access": null,
+    "export": true,
+    "importPath": "DrawVector/src/Node.js",
+    "importStyle": "Node",
+    "description": null,
+    "lineNumber": 1,
+    "undocument": true,
+    "interface": false
+  },
+  {
+    "__docId__": 2,
+    "kind": "constructor",
+    "static": false,
+    "variation": null,
+    "name": "constructor",
+    "memberof": "src/Node.js~Node",
+    "longname": "src/Node.js~Node#constructor",
+    "access": null,
+    "description": null,
+    "lineNumber": 2,
+    "undocument": true,
+    "params": [
+      {
+        "name": "key",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "center",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "type",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "target",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "generator": false
+  },
+  {
+    "__docId__": 3,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "key",
+    "memberof": "src/Node.js~Node",
+    "longname": "src/Node.js~Node#key",
+    "access": null,
+    "description": null,
+    "lineNumber": 3,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 4,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "selected",
+    "memberof": "src/Node.js~Node",
+    "longname": "src/Node.js~Node#selected",
+    "access": null,
+    "description": null,
+    "lineNumber": 4,
+    "undocument": true,
+    "type": {
+      "types": [
+        "boolean"
+      ]
+    }
+  },
+  {
+    "__docId__": 5,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "type",
+    "memberof": "src/Node.js~Node",
+    "longname": "src/Node.js~Node#type",
+    "access": null,
+    "description": null,
+    "lineNumber": 5,
+    "undocument": true,
+    "type": {
+      "types": [
+        "string"
+      ]
+    }
+  },
+  {
+    "__docId__": 6,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "center",
+    "memberof": "src/Node.js~Node",
+    "longname": "src/Node.js~Node#center",
+    "access": null,
+    "description": null,
+    "lineNumber": 6,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 7,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "view",
+    "memberof": "src/Node.js~Node",
+    "longname": "src/Node.js~Node#view",
+    "access": null,
+    "description": null,
+    "lineNumber": 7,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 8,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "target",
+    "memberof": "src/Node.js~Node",
+    "longname": "src/Node.js~Node#target",
+    "access": null,
+    "description": null,
+    "lineNumber": 8,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 9,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "parent",
+    "memberof": "src/Node.js~Node",
+    "longname": "src/Node.js~Node#parent",
+    "access": null,
+    "description": null,
+    "lineNumber": 9,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 10,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "setParent",
+    "memberof": "src/Node.js~Node",
+    "longname": "src/Node.js~Node#setParent",
+    "access": null,
+    "description": null,
+    "lineNumber": 14,
+    "undocument": true,
+    "params": [
+      {
+        "name": "parent",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "generator": false
+  },
+  {
+    "__docId__": 11,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "parent",
+    "memberof": "src/Node.js~Node",
+    "longname": "src/Node.js~Node#parent",
+    "access": null,
+    "description": null,
+    "lineNumber": 15,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 12,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "makeRect",
+    "memberof": "src/Node.js~Node",
+    "longname": "src/Node.js~Node#makeRect",
+    "access": null,
+    "description": null,
+    "lineNumber": 17,
+    "undocument": true,
+    "params": [],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 13,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "makeNode",
+    "memberof": "src/Node.js~Node",
+    "longname": "src/Node.js~Node#makeNode",
+    "access": null,
+    "description": null,
+    "lineNumber": 26,
+    "undocument": true,
+    "params": [],
+    "generator": false
+  },
+  {
+    "__docId__": 14,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "view",
+    "memberof": "src/Node.js~Node",
+    "longname": "src/Node.js~Node#view",
+    "access": null,
+    "description": null,
+    "lineNumber": 37,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 15,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "moveTo",
+    "memberof": "src/Node.js~Node",
+    "longname": "src/Node.js~Node#moveTo",
+    "access": null,
+    "description": null,
+    "lineNumber": 39,
+    "undocument": true,
+    "params": [
+      {
+        "name": "point",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "generator": false
+  },
+  {
+    "__docId__": 16,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "center",
+    "memberof": "src/Node.js~Node",
+    "longname": "src/Node.js~Node#center",
+    "access": null,
+    "description": null,
+    "lineNumber": 40,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 17,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "toggleSelected",
+    "memberof": "src/Node.js~Node",
+    "longname": "src/Node.js~Node#toggleSelected",
+    "access": null,
+    "description": null,
+    "lineNumber": 48,
+    "undocument": true,
+    "params": [],
+    "generator": false
+  },
+  {
+    "__docId__": 18,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "setSelected",
+    "memberof": "src/Node.js~Node",
+    "longname": "src/Node.js~Node#setSelected",
+    "access": null,
+    "description": null,
+    "lineNumber": 51,
+    "undocument": true,
+    "params": [
+      {
+        "name": "selected",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "generator": false
+  },
+  {
+    "__docId__": 19,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "selected",
+    "memberof": "src/Node.js~Node",
+    "longname": "src/Node.js~Node#selected",
+    "access": null,
+    "description": null,
+    "lineNumber": 52,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 20,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "updateBesideSegment",
+    "memberof": "src/Node.js~Node",
+    "longname": "src/Node.js~Node#updateBesideSegment",
+    "access": null,
+    "description": null,
+    "lineNumber": 55,
+    "undocument": true,
+    "params": [],
+    "generator": false
+  },
+  {
+    "__docId__": 21,
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/NodeController.js",
+    "memberof": null,
+    "longname": "src/NodeController.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import interact from 'interact.js'; \nimport {DrawTool} from './Tool';\n\nexport default class NodeController{\n\tconstructor(target){\n\t\tthis.target = target;//append to svg\n\t\tthis.nodeMap = new Map();\n\t\tthis.idIndex = 0;\n\t\tthis.pathIndex = 0;\n\t\tthis.tool = new DrawTool();\n\t\tthis.tool.setDelegate(this);\n\t\tthis.selectedNodes = [];\n\t\tthis.setListener();\n\t}\n\tsetListener() {\n\t\tinteract('#drawing_panel')\n\t\t\t.on('tap', this.tapBackground.bind(this));\n\t\tinteract('.node')\n\t\t\t.draggable({onmove:this.dragNode.bind(this)})\n\t\t\t.on('doubletap', this.doubleTapNode.bind(this))\n\t\t\t.on('tap', this.tapNode.bind(this));//不bind的話nodeTap裡的this會變別人\n\t}\n\tgetNode(event) {\n\t\treturn this.nodeMap.get(event.target.id);\n\t}\n\tdragNode(event){\n\t\tif (event.target.classList[0] !== 'node') return;\n\t\tthis.tool.dragNode(event);\t\n\t}\n\n\ttapNode(event){\n\t\tif (event.target.classList[0] !== 'node') return;\n\t\tthis.tool.tapNode(event);\n\t}\n\tdoubleTapNode(event) {\n\t\tif (event.target.classList[0] !== 'node') return;\n\t\tthis.tool.doubleTapNode(event);\n\t}\n\ttapBackground(event){\n\t\tif (event.target.nodeName !== 'svg') return;\n\t\tthis.tool.tapBackground(event);\n\t}\n\tcleanSelectedNodes(){\n\t\tfor (var i = this.selectedNodes.length - 1; i >= 0; i--) {\n\t\t\tthis.selectedNodes[i].setSelected(false);\n\t\t}\n\t\tthis.selectedNodes.splice(0, this.selectedNodes.length);\n\t}\n\t\n\tgetKey(index) {\n\t\treturn `n-${index}`;\n\t}\n\tpositionOnDrawingPanel(event) {\n\t\tlet svgtag = document.getElementById('drawing_panel'),\n\t\t\tx = event.clientX - svgtag.getBoundingClientRect().top,\n\t\t\ty = event.clientY - svgtag.getBoundingClientRect().left;\n\t\treturn {x:Math.floor(x), y:Math.floor(y)};\n\t}\n}"
+  },
+  {
+    "__docId__": 22,
+    "kind": "class",
+    "static": true,
+    "variation": null,
+    "name": "NodeController",
+    "memberof": "src/NodeController.js",
+    "longname": "src/NodeController.js~NodeController",
+    "access": null,
+    "export": true,
+    "importPath": "DrawVector/src/NodeController.js",
+    "importStyle": "NodeController",
+    "description": null,
+    "lineNumber": 4,
+    "undocument": true,
+    "interface": false
+  },
+  {
+    "__docId__": 23,
+    "kind": "constructor",
+    "static": false,
+    "variation": null,
+    "name": "constructor",
+    "memberof": "src/NodeController.js~NodeController",
+    "longname": "src/NodeController.js~NodeController#constructor",
+    "access": null,
+    "description": null,
+    "lineNumber": 5,
+    "undocument": true,
+    "params": [
+      {
+        "name": "target",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "generator": false
+  },
+  {
+    "__docId__": 24,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "target",
+    "memberof": "src/NodeController.js~NodeController",
+    "longname": "src/NodeController.js~NodeController#target",
+    "access": null,
+    "description": null,
+    "lineNumber": 6,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 25,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "nodeMap",
+    "memberof": "src/NodeController.js~NodeController",
+    "longname": "src/NodeController.js~NodeController#nodeMap",
+    "access": null,
+    "description": null,
+    "lineNumber": 7,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 26,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "idIndex",
+    "memberof": "src/NodeController.js~NodeController",
+    "longname": "src/NodeController.js~NodeController#idIndex",
+    "access": null,
+    "description": null,
+    "lineNumber": 8,
+    "undocument": true,
+    "type": {
+      "types": [
+        "number"
+      ]
+    }
+  },
+  {
+    "__docId__": 27,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "pathIndex",
+    "memberof": "src/NodeController.js~NodeController",
+    "longname": "src/NodeController.js~NodeController#pathIndex",
+    "access": null,
+    "description": null,
+    "lineNumber": 9,
+    "undocument": true,
+    "type": {
+      "types": [
+        "number"
+      ]
+    }
+  },
+  {
+    "__docId__": 28,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "tool",
+    "memberof": "src/NodeController.js~NodeController",
+    "longname": "src/NodeController.js~NodeController#tool",
+    "access": null,
+    "description": null,
+    "lineNumber": 10,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 29,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "selectedNodes",
+    "memberof": "src/NodeController.js~NodeController",
+    "longname": "src/NodeController.js~NodeController#selectedNodes",
+    "access": null,
+    "description": null,
+    "lineNumber": 12,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 30,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "setListener",
+    "memberof": "src/NodeController.js~NodeController",
+    "longname": "src/NodeController.js~NodeController#setListener",
+    "access": null,
+    "description": null,
+    "lineNumber": 15,
+    "undocument": true,
+    "params": [],
+    "generator": false
+  },
+  {
+    "__docId__": 31,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "getNode",
+    "memberof": "src/NodeController.js~NodeController",
+    "longname": "src/NodeController.js~NodeController#getNode",
+    "access": null,
+    "description": null,
+    "lineNumber": 23,
+    "undocument": true,
+    "params": [
+      {
+        "name": "event",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 32,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "dragNode",
+    "memberof": "src/NodeController.js~NodeController",
+    "longname": "src/NodeController.js~NodeController#dragNode",
+    "access": null,
+    "description": null,
+    "lineNumber": 26,
+    "undocument": true,
+    "params": [
+      {
+        "name": "event",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "generator": false
+  },
+  {
+    "__docId__": 33,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "tapNode",
+    "memberof": "src/NodeController.js~NodeController",
+    "longname": "src/NodeController.js~NodeController#tapNode",
+    "access": null,
+    "description": null,
+    "lineNumber": 31,
+    "undocument": true,
+    "params": [
+      {
+        "name": "event",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "generator": false
+  },
+  {
+    "__docId__": 34,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "doubleTapNode",
+    "memberof": "src/NodeController.js~NodeController",
+    "longname": "src/NodeController.js~NodeController#doubleTapNode",
+    "access": null,
+    "description": null,
+    "lineNumber": 35,
+    "undocument": true,
+    "params": [
+      {
+        "name": "event",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "generator": false
+  },
+  {
+    "__docId__": 35,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "tapBackground",
+    "memberof": "src/NodeController.js~NodeController",
+    "longname": "src/NodeController.js~NodeController#tapBackground",
+    "access": null,
+    "description": null,
+    "lineNumber": 39,
+    "undocument": true,
+    "params": [
+      {
+        "name": "event",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "generator": false
+  },
+  {
+    "__docId__": 36,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "cleanSelectedNodes",
+    "memberof": "src/NodeController.js~NodeController",
+    "longname": "src/NodeController.js~NodeController#cleanSelectedNodes",
+    "access": null,
+    "description": null,
+    "lineNumber": 43,
+    "undocument": true,
+    "params": [],
+    "generator": false
+  },
+  {
+    "__docId__": 37,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "getKey",
+    "memberof": "src/NodeController.js~NodeController",
+    "longname": "src/NodeController.js~NodeController#getKey",
+    "access": null,
+    "description": null,
+    "lineNumber": 50,
+    "undocument": true,
+    "params": [
+      {
+        "name": "index",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "string"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 38,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "positionOnDrawingPanel",
+    "memberof": "src/NodeController.js~NodeController",
+    "longname": "src/NodeController.js~NodeController#positionOnDrawingPanel",
+    "access": null,
+    "description": null,
+    "lineNumber": 53,
+    "undocument": true,
+    "params": [
+      {
+        "name": "event",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 39,
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/Path.js",
+    "memberof": null,
+    "longname": "src/Path.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "export default class Path {\n\tconstructor(key, target, nodes){\n\t\tthis.target = target;//append to svg\n\t\tthis.nodes = nodes||[];//optional\n\t\tthis.key = key;\n\t\tthis.closed = false;\n\n\t\tthis.segmnetMap = new Map();\n\t}\n\n\taddNode(node){\n\t\tnode.setParent(this);\n\t\tthis.nodes.push(node);\n\n\t\t\n\t\tif (this.noSegment()) return;\n\t\tlet lastOne = this.nodes.length - 1;\n\t\tthis.drawLineSegment(this.nodes[lastOne-1],\n\t\t\tthis.nodes[lastOne]);\n\t}\n\n\tnoSegment(){\n\t\treturn (this.nodes.length <= 1);\n\t}\n\tmakePathDescription(){\n\t\tlet path_description = '',\n\t\t\tflag;\n\t\tfor (var i = 0; i < this.nodes.length; i++) {\n\t\t\tif(i===0) flag = 'M';\n\n\t\t\telse if(this.nodes[i].type === 'line') flag = ' L';\n\n\n\t\t\tpath_description +=`${flag}${this.nodes[i].center.x} ${this.nodes[i].center.y}`;\n\t\t}\n\n\t\tif (this.closed) path_description+='Z';\n\n\t\treturn path_description;\n\t}\n\n\tdrawPath(){\n\t\tthis.view.attr('d', this.makePathDescription());\n\t}\n\tdrawLineSegment(p1, p2){\n\t\tlet d = this.makeLineDescript(p1, p2),\n\t\t\tsegment = this.target.path(d),\n\t\t\tsegmentKey = `${this.key}-${this.nodes.indexOf(p1)}`;\n\t\tsegment.attr({\n\t\t\tid:segmentKey,\n\t\t\tclass:'segment'\n\t\t});\n\t\tthis.segmnetMap.set(segmentKey, segment);\n\t}\n\tmakeLineDescript(p1, p2){\n\t\t//Mx1 y1 L x2 y2\n\t\treturn `M ${p1.center.x} ${p1.center.y}`\n\t\t\t+` L ${p2.center.x} ${p2.center.y}`;\n\t}\n\tupdateSegment(index){\n\t\tif(!this.closed){\n\t\t\tif(index === 0) this.updatePresentSegment(index);\n\t\t\telse if(index === this.nodes.length-1) this.updatePrevSegment(index);\n\t\t}\n\t\telse{\n\t\t\tthis.updatePrevSegment(index);\n\t\t\tthis.updatePresentSegment(index);\n\t\t}\n\t}\n\n\tupdatePrevSegment(present){\n\t\tlet\tsize = this.nodes.length,\n\t\t\tprev = (present - 1 + size)%size,\n\t\t\tprevSeg = this.segmnetMap.get(`${this.key}-${prev}`),\n\t\t\tprev_d = this.makeLineDescript(this.nodes[prev], this.nodes[present]);\n\t\tprevSeg.attr('d', prev_d);\n\t}\n\n\tupdatePresentSegment(present){\n\t\tlet size = this.nodes.length,\n\t\t\tnext = (present + 1 + size)%size,\n\t\t\tpresentSeg = this.segmnetMap.get(`${this.key}-${present}`),\n\t\t\tpresent_d = this.makeLineDescript(this.nodes[present], this.nodes[next]);\n\t\tpresentSeg.attr('d', present_d);\n\n\t}\n\tfirstNode(){\n\t\treturn this.nodes[0];\n\t}\n\n\tlastNode(){\n\t\treturn this.nodes[this.nodes.length-1];\n\t}\n\tclearSelected(){\n\t\tfor(let node of this.nodes){\n\t\t\tnode.setSelected(false);\n\t\t}\n\t}\n\tclosePath(){\n\t\tthis.closed = true;\n\t\tthis.drawLineSegment(this.lastNode(), this.firstNode());\n\t}\n}"
+  },
+  {
+    "__docId__": 40,
+    "kind": "class",
+    "static": true,
+    "variation": null,
+    "name": "Path",
+    "memberof": "src/Path.js",
+    "longname": "src/Path.js~Path",
+    "access": null,
+    "export": true,
+    "importPath": "DrawVector/src/Path.js",
+    "importStyle": "Path",
+    "description": null,
+    "lineNumber": 1,
+    "undocument": true,
+    "interface": false
+  },
+  {
+    "__docId__": 41,
+    "kind": "constructor",
+    "static": false,
+    "variation": null,
+    "name": "constructor",
+    "memberof": "src/Path.js~Path",
+    "longname": "src/Path.js~Path#constructor",
+    "access": null,
+    "description": null,
+    "lineNumber": 2,
+    "undocument": true,
+    "params": [
+      {
+        "name": "key",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "target",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "nodes",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "generator": false
+  },
+  {
+    "__docId__": 42,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "target",
+    "memberof": "src/Path.js~Path",
+    "longname": "src/Path.js~Path#target",
+    "access": null,
+    "description": null,
+    "lineNumber": 3,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 43,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "nodes",
+    "memberof": "src/Path.js~Path",
+    "longname": "src/Path.js~Path#nodes",
+    "access": null,
+    "description": null,
+    "lineNumber": 4,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 44,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "key",
+    "memberof": "src/Path.js~Path",
+    "longname": "src/Path.js~Path#key",
+    "access": null,
+    "description": null,
+    "lineNumber": 5,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 45,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "closed",
+    "memberof": "src/Path.js~Path",
+    "longname": "src/Path.js~Path#closed",
+    "access": null,
+    "description": null,
+    "lineNumber": 6,
+    "undocument": true,
+    "type": {
+      "types": [
+        "boolean"
+      ]
+    }
+  },
+  {
+    "__docId__": 46,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "segmnetMap",
+    "memberof": "src/Path.js~Path",
+    "longname": "src/Path.js~Path#segmnetMap",
+    "access": null,
+    "description": null,
+    "lineNumber": 8,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 47,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "addNode",
+    "memberof": "src/Path.js~Path",
+    "longname": "src/Path.js~Path#addNode",
+    "access": null,
+    "description": null,
+    "lineNumber": 11,
+    "undocument": true,
+    "params": [
+      {
+        "name": "node",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "generator": false
+  },
+  {
+    "__docId__": 48,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "noSegment",
+    "memberof": "src/Path.js~Path",
+    "longname": "src/Path.js~Path#noSegment",
+    "access": null,
+    "description": null,
+    "lineNumber": 22,
+    "undocument": true,
+    "params": [],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 49,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "makePathDescription",
+    "memberof": "src/Path.js~Path",
+    "longname": "src/Path.js~Path#makePathDescription",
+    "access": null,
+    "description": null,
+    "lineNumber": 25,
+    "undocument": true,
+    "params": [],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 50,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "drawPath",
+    "memberof": "src/Path.js~Path",
+    "longname": "src/Path.js~Path#drawPath",
+    "access": null,
+    "description": null,
+    "lineNumber": 42,
+    "undocument": true,
+    "params": [],
+    "generator": false
+  },
+  {
+    "__docId__": 51,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "drawLineSegment",
+    "memberof": "src/Path.js~Path",
+    "longname": "src/Path.js~Path#drawLineSegment",
+    "access": null,
+    "description": null,
+    "lineNumber": 45,
+    "undocument": true,
+    "params": [
+      {
+        "name": "p1",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "p2",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "generator": false
+  },
+  {
+    "__docId__": 52,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "makeLineDescript",
+    "memberof": "src/Path.js~Path",
+    "longname": "src/Path.js~Path#makeLineDescript",
+    "access": null,
+    "description": null,
+    "lineNumber": 55,
+    "undocument": true,
+    "params": [
+      {
+        "name": "p1",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "p2",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 53,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "updateSegment",
+    "memberof": "src/Path.js~Path",
+    "longname": "src/Path.js~Path#updateSegment",
+    "access": null,
+    "description": null,
+    "lineNumber": 60,
+    "undocument": true,
+    "params": [
+      {
+        "name": "index",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "generator": false
+  },
+  {
+    "__docId__": 54,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "updatePrevSegment",
+    "memberof": "src/Path.js~Path",
+    "longname": "src/Path.js~Path#updatePrevSegment",
+    "access": null,
+    "description": null,
+    "lineNumber": 71,
+    "undocument": true,
+    "params": [
+      {
+        "name": "present",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "generator": false
+  },
+  {
+    "__docId__": 55,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "updatePresentSegment",
+    "memberof": "src/Path.js~Path",
+    "longname": "src/Path.js~Path#updatePresentSegment",
+    "access": null,
+    "description": null,
+    "lineNumber": 79,
+    "undocument": true,
+    "params": [
+      {
+        "name": "present",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "generator": false
+  },
+  {
+    "__docId__": 56,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "firstNode",
+    "memberof": "src/Path.js~Path",
+    "longname": "src/Path.js~Path#firstNode",
+    "access": null,
+    "description": null,
+    "lineNumber": 87,
+    "undocument": true,
+    "params": [],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 57,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "lastNode",
+    "memberof": "src/Path.js~Path",
+    "longname": "src/Path.js~Path#lastNode",
+    "access": null,
+    "description": null,
+    "lineNumber": 91,
+    "undocument": true,
+    "params": [],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 58,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "clearSelected",
+    "memberof": "src/Path.js~Path",
+    "longname": "src/Path.js~Path#clearSelected",
+    "access": null,
+    "description": null,
+    "lineNumber": 94,
+    "undocument": true,
+    "params": [],
+    "generator": false
+  },
+  {
+    "__docId__": 59,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "closePath",
+    "memberof": "src/Path.js~Path",
+    "longname": "src/Path.js~Path#closePath",
+    "access": null,
+    "description": null,
+    "lineNumber": 99,
+    "undocument": true,
+    "params": [],
+    "generator": false
+  },
+  {
+    "__docId__": 60,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "closed",
+    "memberof": "src/Path.js~Path",
+    "longname": "src/Path.js~Path#closed",
+    "access": null,
+    "description": null,
+    "lineNumber": 100,
+    "undocument": true,
+    "type": {
+      "types": [
+        "boolean"
+      ]
+    }
+  },
+  {
+    "__docId__": 61,
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/Tool.js",
+    "memberof": null,
+    "longname": "src/Tool.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import Path from './Path';\nimport Node from './Node';\nimport _ from 'lodash/core';\nclass Tool{\n\tconstructor(){}\n\n\tsetDelegate(delegate){\n\t\tthis.delegate = delegate;\n\t}\n\ttapNode(){}\n\n\ttapBackground(){\n\t}\n\t\n\tdoubleTapNode(){}\n\n\tdragNode(){}\n}\n\nclass DrawTool extends Tool{\n\tconstructor(){\n\t\tsuper();\n\t\tthis.handle = undefined;\n\t\t\n\t}\n\n\ttapNode(event){\n\t\tif (!this.handle) return;\n\t\t\n\t\tlet node = this.delegate.getNode(event),\n\t\t\tfirstNode = this.handle.firstNode();\n\n\t\tif (this.handle.nodes.length > 2 && node === firstNode) {\n\t\t\tthis.handle.closePath();\n\t\t\tthis.handle = undefined;\n\t\t}\n\t}\n\n\ttapBackground(event){\n\t\tlet point = this.delegate.positionOnDrawingPanel(event);\n\t\tif (!this.handle) {\n\t\t\tthis.makePath(point);\t\n\t\t}\n\n\t\tthis.addNodeToHandle(point);\n\t}\n\n\tmakePath(){\n\t\tthis.handle = new Path(`p-${this.delegate.pathIndex}`, this.delegate.target);\n\t\tthis.delegate.pathIndex++;\n\t}\n\n\tmakeLineNode(point) {\n\t\tlet key = this.delegate.getKey(this.delegate.idIndex),\n\t\t\tnode = new Node(key, point, 'line', this.delegate.target);\n\t\tthis.delegate.nodeMap.set(key, node);\n\t\tthis.delegate.idIndex++;\n\n\t\treturn node;\n\t}\n\n\taddNodeToHandle(point){\n\t\tlet\tnode = this.makeLineNode(point);\n\t\tthis.handle.addNode(node);\n\t}\n}\n\nclass SelectTool extends Tool{\n\n\ttapNode(event){\n\t\tlet node = this.delegate.getNode(event);\n\t\tthis.delegate.selectedNodes.push(node);\n\t\tnode.toggleSelected();\n\t}\n\n\ttapBackground(){\n\t\tthis.delegate.cleanSelectedNodes();\n\t}\n\t\n\tdoubleTapNode(event){}\n\n\tdragNode(event){\n\t\tlet node = this.delegate.getNode(event),\n\t\t\tx = node.center.x + event.dx,\n\t\t\ty = node.center.y + event.dy;\n\t\tnode.moveTo({x, y});\n\t\tnode.updateBesideSegment();\n\t}\n}\n\nexport {Tool, DrawTool, SelectTool};"
+  },
+  {
+    "__docId__": 62,
+    "kind": "class",
+    "static": true,
+    "variation": null,
+    "name": "Tool",
+    "memberof": "src/Tool.js",
+    "longname": "src/Tool.js~Tool",
+    "access": null,
+    "export": true,
+    "importPath": "DrawVector/src/Tool.js",
+    "importStyle": "{Tool}",
+    "description": null,
+    "lineNumber": 4,
+    "undocument": true,
+    "interface": false
+  },
+  {
+    "__docId__": 63,
+    "kind": "constructor",
+    "static": false,
+    "variation": null,
+    "name": "constructor",
+    "memberof": "src/Tool.js~Tool",
+    "longname": "src/Tool.js~Tool#constructor",
+    "access": null,
+    "description": null,
+    "lineNumber": 5,
+    "undocument": true,
+    "params": [],
+    "generator": false
+  },
+  {
+    "__docId__": 64,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "setDelegate",
+    "memberof": "src/Tool.js~Tool",
+    "longname": "src/Tool.js~Tool#setDelegate",
+    "access": null,
+    "description": null,
+    "lineNumber": 7,
+    "undocument": true,
+    "params": [
+      {
+        "name": "delegate",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "generator": false
+  },
+  {
+    "__docId__": 65,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "delegate",
+    "memberof": "src/Tool.js~Tool",
+    "longname": "src/Tool.js~Tool#delegate",
+    "access": null,
+    "description": null,
+    "lineNumber": 8,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 66,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "tapNode",
+    "memberof": "src/Tool.js~Tool",
+    "longname": "src/Tool.js~Tool#tapNode",
+    "access": null,
+    "description": null,
+    "lineNumber": 10,
+    "undocument": true,
+    "params": [],
+    "generator": false
+  },
+  {
+    "__docId__": 67,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "tapBackground",
+    "memberof": "src/Tool.js~Tool",
+    "longname": "src/Tool.js~Tool#tapBackground",
+    "access": null,
+    "description": null,
+    "lineNumber": 12,
+    "undocument": true,
+    "params": [],
+    "generator": false
+  },
+  {
+    "__docId__": 68,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "doubleTapNode",
+    "memberof": "src/Tool.js~Tool",
+    "longname": "src/Tool.js~Tool#doubleTapNode",
+    "access": null,
+    "description": null,
+    "lineNumber": 15,
+    "undocument": true,
+    "params": [],
+    "generator": false
+  },
+  {
+    "__docId__": 69,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "dragNode",
+    "memberof": "src/Tool.js~Tool",
+    "longname": "src/Tool.js~Tool#dragNode",
+    "access": null,
+    "description": null,
+    "lineNumber": 17,
+    "undocument": true,
+    "params": [],
+    "generator": false
+  },
+  {
+    "__docId__": 70,
+    "kind": "class",
+    "static": true,
+    "variation": null,
+    "name": "DrawTool",
+    "memberof": "src/Tool.js",
+    "longname": "src/Tool.js~DrawTool",
+    "access": null,
+    "export": true,
+    "importPath": "DrawVector/src/Tool.js",
+    "importStyle": "{DrawTool}",
+    "description": null,
+    "lineNumber": 20,
+    "undocument": true,
+    "interface": false,
+    "extends": [
+      "Tool"
+    ]
+  },
+  {
+    "__docId__": 71,
+    "kind": "constructor",
+    "static": false,
+    "variation": null,
+    "name": "constructor",
+    "memberof": "src/Tool.js~DrawTool",
+    "longname": "src/Tool.js~DrawTool#constructor",
+    "access": null,
+    "description": null,
+    "lineNumber": 21,
+    "undocument": true,
+    "params": [],
+    "generator": false
+  },
+  {
+    "__docId__": 72,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "handle",
+    "memberof": "src/Tool.js~DrawTool",
+    "longname": "src/Tool.js~DrawTool#handle",
+    "access": null,
+    "description": null,
+    "lineNumber": 23,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 73,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "tapNode",
+    "memberof": "src/Tool.js~DrawTool",
+    "longname": "src/Tool.js~DrawTool#tapNode",
+    "access": null,
+    "description": null,
+    "lineNumber": 27,
+    "undocument": true,
+    "params": [
+      {
+        "name": "event",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "generator": false
+  },
+  {
+    "__docId__": 74,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "handle",
+    "memberof": "src/Tool.js~DrawTool",
+    "longname": "src/Tool.js~DrawTool#handle",
+    "access": null,
+    "description": null,
+    "lineNumber": 35,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 75,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "tapBackground",
+    "memberof": "src/Tool.js~DrawTool",
+    "longname": "src/Tool.js~DrawTool#tapBackground",
+    "access": null,
+    "description": null,
+    "lineNumber": 39,
+    "undocument": true,
+    "params": [
+      {
+        "name": "event",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "generator": false
+  },
+  {
+    "__docId__": 76,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "makePath",
+    "memberof": "src/Tool.js~DrawTool",
+    "longname": "src/Tool.js~DrawTool#makePath",
+    "access": null,
+    "description": null,
+    "lineNumber": 48,
+    "undocument": true,
+    "params": [],
+    "generator": false
+  },
+  {
+    "__docId__": 77,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "handle",
+    "memberof": "src/Tool.js~DrawTool",
+    "longname": "src/Tool.js~DrawTool#handle",
+    "access": null,
+    "description": null,
+    "lineNumber": 49,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 78,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "makeLineNode",
+    "memberof": "src/Tool.js~DrawTool",
+    "longname": "src/Tool.js~DrawTool#makeLineNode",
+    "access": null,
+    "description": null,
+    "lineNumber": 53,
+    "undocument": true,
+    "params": [
+      {
+        "name": "point",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 79,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "addNodeToHandle",
+    "memberof": "src/Tool.js~DrawTool",
+    "longname": "src/Tool.js~DrawTool#addNodeToHandle",
+    "access": null,
+    "description": null,
+    "lineNumber": 62,
+    "undocument": true,
+    "params": [
+      {
+        "name": "point",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "generator": false
+  },
+  {
+    "__docId__": 80,
+    "kind": "class",
+    "static": true,
+    "variation": null,
+    "name": "SelectTool",
+    "memberof": "src/Tool.js",
+    "longname": "src/Tool.js~SelectTool",
+    "access": null,
+    "export": true,
+    "importPath": "DrawVector/src/Tool.js",
+    "importStyle": "{SelectTool}",
+    "description": null,
+    "lineNumber": 68,
+    "undocument": true,
+    "interface": false,
+    "extends": [
+      "Tool"
+    ]
+  },
+  {
+    "__docId__": 81,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "tapNode",
+    "memberof": "src/Tool.js~SelectTool",
+    "longname": "src/Tool.js~SelectTool#tapNode",
+    "access": null,
+    "description": null,
+    "lineNumber": 70,
+    "undocument": true,
+    "params": [
+      {
+        "name": "event",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "generator": false
+  },
+  {
+    "__docId__": 82,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "tapBackground",
+    "memberof": "src/Tool.js~SelectTool",
+    "longname": "src/Tool.js~SelectTool#tapBackground",
+    "access": null,
+    "description": null,
+    "lineNumber": 76,
+    "undocument": true,
+    "params": [],
+    "generator": false
+  },
+  {
+    "__docId__": 83,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "doubleTapNode",
+    "memberof": "src/Tool.js~SelectTool",
+    "longname": "src/Tool.js~SelectTool#doubleTapNode",
+    "access": null,
+    "description": null,
+    "lineNumber": 80,
+    "undocument": true,
+    "params": [
+      {
+        "name": "event",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "generator": false
+  },
+  {
+    "__docId__": 84,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "dragNode",
+    "memberof": "src/Tool.js~SelectTool",
+    "longname": "src/Tool.js~SelectTool#dragNode",
+    "access": null,
+    "description": null,
+    "lineNumber": 82,
+    "undocument": true,
+    "params": [
+      {
+        "name": "event",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "generator": false
+  },
+  {
+    "__docId__": 85,
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/main.js",
+    "memberof": null,
+    "longname": "src/main.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import Snap from 'snapsvg';\nimport NodeController from './NodeController';\nimport {DrawTool, SelectTool} from './Tool';\nlet svg = Snap('#drawing_panel');\nlet nodeController = new NodeController(svg);\ninitSVG();\nsetKeyUP();\n\nfunction initSVG(){\n\tsvg.attr({\n\t\twidth:800,\n\t\theight:600\n\t});\n}\n\nfunction setKeyUP(){\n\n\tlet toolHandler = new Map(),\n\t\tselect = new SelectTool(),\n\t\tpen = new DrawTool();\n\tselect.setDelegate(nodeController);\n\tpen.setDelegate(nodeController);\n\n\ttoolHandler.set(32,  select);//space => select tool\n\ttoolHandler.set(80, pen);//Pp => path tool (drawing tool)\n\twindow.onkeyup = function(e) {\n\t\tvar key = e.keyCode ? e.keyCode : e.which;\n\t\tnodeController.tool = toolHandler.get(key);\n\t};\n}\n\n"
+  },
+  {
+    "__docId__": 86,
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "svg",
+    "memberof": "src/main.js",
+    "longname": "src/main.js~svg",
+    "access": null,
+    "export": false,
+    "importPath": "DrawVector/src/main.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 4,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 87,
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "nodeController",
+    "memberof": "src/main.js",
+    "longname": "src/main.js~nodeController",
+    "access": null,
+    "export": false,
+    "importPath": "DrawVector/src/main.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 5,
+    "undocument": true,
+    "type": {
+      "types": [
+        "src/NodeController.js~NodeController"
+      ]
+    }
+  },
+  {
+    "__docId__": 88,
+    "kind": "function",
+    "static": true,
+    "variation": null,
+    "name": "initSVG",
+    "memberof": "src/main.js",
+    "longname": "src/main.js~initSVG",
+    "access": null,
+    "export": false,
+    "importPath": "DrawVector/src/main.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 9,
+    "undocument": true,
+    "params": [],
+    "generator": false
+  },
+  {
+    "__docId__": 89,
+    "kind": "function",
+    "static": true,
+    "variation": null,
+    "name": "setKeyUP",
+    "memberof": "src/main.js",
+    "longname": "src/main.js~setKeyUP",
+    "access": null,
+    "export": false,
+    "importPath": "DrawVector/src/main.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 16,
+    "undocument": true,
+    "params": [],
+    "generator": false
+  },
+  {
+    "__docId__": 91,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Infinity",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Infinity",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Infinity",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 92,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "NaN",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NaN",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~NaN",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 93,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "undefined",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~undefined",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 94,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "null",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~null",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 95,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Object",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Object",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 96,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "object",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~object",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 97,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Function",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Function",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 98,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "function",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~function",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 99,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Boolean",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Boolean",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 100,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "boolean",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~boolean",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 101,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Symbol",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Symbol",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 102,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Error",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Error",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 103,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "EvalError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/EvalError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~EvalError",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 104,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "InternalError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/InternalError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~InternalError",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 105,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "RangeError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RangeError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~RangeError",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 106,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "ReferenceError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ReferenceError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~ReferenceError",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 107,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "SyntaxError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SyntaxError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~SyntaxError",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 108,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "TypeError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypeError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~TypeError",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 109,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "URIError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/URIError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~URIError",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 110,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Number",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Number",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 111,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "number",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~number",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 112,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Date",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Date",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 113,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "String",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~String",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 114,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "string",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~string",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 115,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "RegExp",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~RegExp",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 116,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Array",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 117,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Int8Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int8Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Int8Array",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 118,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Uint8Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Uint8Array",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 119,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Uint8ClampedArray",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8ClampedArray",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Uint8ClampedArray",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 120,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Int16Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int16Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Int16Array",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 121,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Uint16Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint16Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Uint16Array",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 122,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Int32Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int32Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Int32Array",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 123,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Uint32Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint32Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Uint32Array",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 124,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Float32Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float32Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Float32Array",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 125,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Float64Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float64Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Float64Array",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 126,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Map",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Map",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 127,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Set",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Set",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 128,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "WeakMap",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~WeakMap",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 129,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "WeakSet",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~WeakSet",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 130,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "ArrayBuffer",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~ArrayBuffer",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 131,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "DataView",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~DataView",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 132,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "JSON",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~JSON",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 133,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Promise",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Promise",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 134,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Generator",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Generator",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Generator",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 135,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "GeneratorFunction",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/GeneratorFunction",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~GeneratorFunction",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 136,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Reflect",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Reflect",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 137,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Proxy",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Proxy",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 139,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "CanvasRenderingContext2D",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "longname": "BuiltinExternal/WebAPIExternal.js~CanvasRenderingContext2D",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 140,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "DocumentFragment",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "longname": "BuiltinExternal/WebAPIExternal.js~DocumentFragment",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 141,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Element",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/Element",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "longname": "BuiltinExternal/WebAPIExternal.js~Element",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 142,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Event",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/Event",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "longname": "BuiltinExternal/WebAPIExternal.js~Event",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 143,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Node",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/Node",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "longname": "BuiltinExternal/WebAPIExternal.js~Node",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 144,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "NodeList",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/NodeList",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "longname": "BuiltinExternal/WebAPIExternal.js~NodeList",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 145,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "XMLHttpRequest",
+    "externalLink": "https://developer.mozilla.org/en/docs/Web/API/XMLHttpRequest",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "longname": "BuiltinExternal/WebAPIExternal.js~XMLHttpRequest",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 146,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "AudioContext",
+    "externalLink": "https://developer.mozilla.org/en/docs/Web/API/AudioContext",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "longname": "BuiltinExternal/WebAPIExternal.js~AudioContext",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  }
+]

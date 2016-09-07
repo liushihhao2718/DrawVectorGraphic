@@ -57,16 +57,32 @@ export default class Path {
 		return `M ${p1.center.x} ${p1.center.y}`
 			+` L ${p2.center.x} ${p2.center.y}`;
 	}
-	updateSegment(present){//0
-		let	size = this.nodes.length,//3
-			prev = (present - 1 + size)%size,//2
-			next = (present + 1 + size)%size,//1
+	updateSegment(index){
+		if(!this.closed){
+			if(index === 0) this.updatePresentSegment(index);
+			else if(index === this.nodes.length-1) this.updatePrevSegment(index);
+		}
+		else{
+			this.updatePrevSegment(index);
+			this.updatePresentSegment(index);
+		}
+	}
+
+	updatePrevSegment(present){
+		let	size = this.nodes.length,
+			prev = (present - 1 + size)%size,
 			prevSeg = this.segmnetMap.get(`${this.key}-${prev}`),
+			prev_d = this.makeLineDescript(this.nodes[prev], this.nodes[present]);
+		prevSeg.attr('d', prev_d);
+	}
+
+	updatePresentSegment(present){
+		let size = this.nodes.length,
+			next = (present + 1 + size)%size,
 			presentSeg = this.segmnetMap.get(`${this.key}-${present}`),
-			left_d = this.makeLineDescript(this.nodes[prev], this.nodes[present]),
-			right_d = this.makeLineDescript(this.nodes[present], this.nodes[next]);
-		prevSeg.attr('d', left_d);
-		presentSeg.attr('d', right_d);
+			present_d = this.makeLineDescript(this.nodes[present], this.nodes[next]);
+		presentSeg.attr('d', present_d);
+
 	}
 	firstNode(){
 		return this.nodes[0];

@@ -1,6 +1,6 @@
 import Path from './Path';
 import Node from './Node';
-
+import _ from 'lodash/core';
 class Tool{
 	constructor(){}
 
@@ -46,7 +46,9 @@ class DrawTool extends Tool{
 	}
 
 	makePath(){
-		this.handle = new Path(`p-${this.delegate.pathIndex}`, this.delegate.target);
+		this.handle = new Path(`p-${this.delegate.pathIndex}`,
+			this.delegate.target);
+		
 		this.delegate.pathIndex++;
 	}
 
@@ -73,8 +75,8 @@ class SelectTool extends Tool{
 		node.toggleSelected();
 	}
 
-	tapBackground(event){
-		
+	tapBackground(){
+		this.delegate.cleanSelectedNodes();
 	}
 	
 	doubleTapNode(event){}
