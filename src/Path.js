@@ -339,6 +339,73 @@ class Path{
 			error_code = code;
 		}
 	}
+	nodeMove(event) {
+		let node = this.nodeMap.get(event.target.id);
+		if (node.type === 'smooth') {
+			let prev = this.nodeMap.get(node.prev),
+				next = this.nodeMap.get(node.next);
+
+			makeSmooth(prev, node, next);
+			node.x += event.dx;
+			node.y += event.dy;
+			prev.x += event.dx;
+			prev.y += event.dy;
+			next.x += event.dx;
+			next.y += event.dy;
+		}
+		else if(node.type === 'curve') {
+
+			let prev = this.nodeMap.get(node.prev),
+				next = this.nodeMap.get(node.next);
+
+			if (prev.type === 'offcurve') {
+				prev.x += event.dx;
+				prev.y += event.dy;
+			}
+			if (next.type === 'offcurve') {
+				next.x += event.dx;
+				next.y += event.dy;
+			}
+			node.x += event.dx;
+			node.y += event.dy;
+		}
+		else if(node.type === 'line'){
+			node.x += event.dx;
+			node.y += event.dy;
+		}
+		else if(node.type === 'offcurve'){
+			let prev = this.nodeMap.get(node.prev),
+				next = this.nodeMap.get(node.next);
+
+			node.x += event.dx;
+			node.y += event.dy;
+
+			if (prev.type === 'smooth') {
+				makeSmooth(node, prev, this.nodeMap.get(prev.prev));
+			}else if(next.type === 'smooth'){
+				makeSmooth(node, next, this.nodeMap.get(next.next));
+			}
+		}
+
+		function makeSmooth(o1, s, o2) {
+			let v1 = {
+					x : s.x - o1.x,
+					y : s.y - o1.y
+				},
+				v2 = {
+					x : o2.x - s.x,
+					y : o2.y - s.y
+				};
+			let d1 = Math.sqrt(Math.pow(v1.x, 2) + Math.pow(v1.y, 2)),
+				d2 = Math.sqrt(Math.pow(v2.x, 2) + Math.pow(v2.y, 2));
+			let dot = 	(v1.x * v2.x + v1.y*v2.y)/(d1*d2);
+			if (Math.abs( dot - 1 )>= 0.01) {
+				
+				o2.x = s.x + v1.x * d2 / Math.floor(d1);
+				o2.y = s.y + v1.y * d2 / Math.floor(d1);
+			}
+		}
+	}
 }
 
 export {Node, Path};

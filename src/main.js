@@ -13,9 +13,7 @@ interact('.offcurve').draggable({onmove:rectMove});
 
 
 function rectMove(e) {
-	let n = path.nodeMap.get(e.target.id);
-	n.x += e.dx;
-	n.y += e.dy;
+	path.nodeMove(e);
 
 	svg.clear();
 	makeViewModel(path);
