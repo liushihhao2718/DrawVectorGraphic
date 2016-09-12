@@ -33,8 +33,8 @@ function make_test_path(close = true){
 		n4 = new Node(300, 70, 'offcurve'),
 		n5 = new Node(350, 150, 'offcurve'),
 		n6 = new Node(400, 100, 'curve'),
-		n7 = new Node(380, 50, 'line'),
-		n8 = new Node(250, 50, 'line');
+		n7 = new Node(380, 50, 'curve'),
+		n8 = new Node(250, 50, 'curve');
 
 	return new Path([n0,n1,n2,n3,n4,n5,n6,n7,n8], close);
 }

@@ -1,9 +1,9 @@
 let uuid = require( 'uuid');
 
 class Node {
-	constructor(x, y, type = 'line'){
+	constructor(x, y, type = 'curve'){
 		this.key = uuid.v1();
-		this.type = type;//type: line, curve, smooth, offcurve
+		this.type = type;//type: curve, curve, smooth, offcurve
 		this.x = x;
 		this.y = y;
 
@@ -77,25 +77,14 @@ class Path{
 					else error(1);
 					break;
 				case 'curve':
-					if(n.type === 'line' || n.type === 'curve'){
-						state = 'line';
+					if(n.type === 'curve'){
+						state = 'curve';
 						d+=` L${n.x},${n.y}`;
 					}
 					else if(n.type === 'offcurve'){
 						state = 'offcurve';
 						buffer.push(n);
 					}else error(2);
-					break;
-				case 'line':
-					if(n.type === 'line'){
-						state = 'line';
-						d+=` L${n.x},${n.y}`;
-					}
-					else if(n.type === 'curve' || n.type==='smooth'){
-						state = 'curve';
-						d+=` L${n.x},${n.y}`;
-					}
-					else error(3);
 					break;
 				case 'offcurve':
 					if(n.type === 'offcurve') {
@@ -132,7 +121,7 @@ class Path{
 	//新的node必須都是line node，然後透過其他操作來改變
 	addPoint(x, y){
 		if(this.closed) return;
-		let new_node = new Node(x,y,'line'),
+		let new_node = new Node(x,y,'curve'),
 			key = uuid.v1();
 
 		new_node.prev = this.tail;
@@ -284,8 +273,8 @@ class Path{
 					else error(1);
 					break;
 				case 'curve':
-					if(n.type === 'line' || n.type === 'curve'){
-						state = 'line';
+					if(n.type === 'curve' || n.type === 'curve'){
+						state = 'curve';
 						segments.push([buffer[0], n]);
 						buffer.pop();
 						buffer.push(n);
@@ -294,21 +283,6 @@ class Path{
 						state = 'offcurve';
 						buffer.push(n);
 					}else error(2);
-					break;
-				case 'line':
-					if(n.type === 'line'){
-						state = 'line';
-						segments.push([buffer[0], n]);
-						buffer.pop();
-						buffer.push(n);
-					}
-					else if(n.type === 'curve' || n.type==='smooth'){
-						state = 'curve';
-						segments.push([buffer[0], n]);
-						buffer.pop();
-						buffer.push(n);
-					}
-					else error(3);
 					break;
 				case 'offcurve':
 					if(n.type === 'offcurve') {
@@ -321,9 +295,8 @@ class Path{
 					if(n.type === 'curve' || n.type==='smooth'){
 						state = 'curve';
 						segments.push([ buffer[0], buffer[1], buffer[2],n ]);
-						buffer.pop();
+						buffer.splice(0, 3);
 						buffer.push(n);
-						buffer.splice(0, 2);
 					}
 					else error(5);
 					break;
@@ -369,7 +342,7 @@ class Path{
 			node.x += event.dx;
 			node.y += event.dy;
 		}
-		else if(node.type === 'line'){
+		else if(node.type === 'curve'){
 			node.x += event.dx;
 			node.y += event.dy;
 		}
@@ -406,6 +379,15 @@ class Path{
 			}
 		}
 	}
+
+	closePath(){
+		this.nodeMap.get(this.head).prev = this.tail;
+		this.nodeMap.get(this.tail).next = this.head;
+	}
+	makeLineSegmentToCurve(c1, c2){
+
+	}
+
 }
 
 export {Node, Path};
