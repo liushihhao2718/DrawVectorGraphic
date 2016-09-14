@@ -33,6 +33,13 @@
 
 .segment {
 	stroke:#000;
-	stroke-width:3;
+	stroke-width:1;
 	fill:none;
+}
+
+.segment.shadow {
+	stroke:none;
+	stroke-width:6;
+	fill:transparent;
+	pointer-events:all;
 }

@@ -1,8 +1,8 @@
-let uuid = require( 'uuid');
+let shortid = require( 'shortid');
 
 class Node {
 	constructor(x, y, type = 'curve'){
-		this.key = uuid.v1();
+		this.key =  shortid.generate();
 		this.type = type;//type: curve, curve, smooth, offcurve
 		this.x = x;
 		this.y = y;
@@ -19,7 +19,7 @@ class Node {
 
 class Path{
 	constructor(nodes, closed = true){
-		this.key = uuid.v1();
+		this.key = shortid.generate();
 
 		this.nodeMap = new Map();
 		this.head = undefined;
@@ -312,8 +312,10 @@ class Path{
 			error_code = code;
 		}
 	}
+
 	nodeMove(key, dx, dy) {
 		let node = this.nodeMap.get(key);
+
 		if (node.type === 'smooth') {
 			let prev = this.nodeMap.get(node.prev),
 				next = this.nodeMap.get(node.next);
@@ -331,18 +333,14 @@ class Path{
 			let prev = this.nodeMap.get(node.prev),
 				next = this.nodeMap.get(node.next);
 
-			if (prev.type === 'offcurve') {
+			if (prev !== undefined && prev.type === 'offcurve') {
 				prev.x += dx;
 				prev.y += dy;
 			}
-			if (next.type === 'offcurve') {
+			if (next !== undefined && next.type === 'offcurve') {
 				next.x += dx;
 				next.y += dy;
 			}
-			node.x += dx;
-			node.y += dy;
-		}
-		else if(node.type === 'curve'){
 			node.x += dx;
 			node.y += dy;
 		}
@@ -406,6 +404,21 @@ class Path{
 			'x' : Math.floor( (2*p1.x + p2.x)/3 ),
 			'y' : Math.floor( (2*p1.y + p2.y)/3 )
 		};
+	}
+
+	transferNodeType(key){
+		let node = this.nodeMap.get(key),
+			prev = node.prev,
+			next = node.next;
+		if (node.type === 'curve' 
+			&& prev != undefined && prev != undefined
+			&& this.isOff(prev) && this.isOff(next) ) {
+		
+			node.type = 'smooth';
+		}
+		else if (node.type === 'smooth') {
+			node.type = 'curve';
+		}
 	}
 }
 

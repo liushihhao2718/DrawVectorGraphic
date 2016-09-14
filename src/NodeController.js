@@ -16,26 +16,29 @@ export default class PathController{
 		this.setListener();
 	}
 	setListener() {
-		interact('#drawing_panel')
-			.on('click', this.tapBackground.bind(this));
 		
 		interact('.node')
 			.draggable({onmove:this.dragNode.bind(this)})
-			.on('doubletap', this.doubleTapNode.bind(this))
-			.on('click', this.tapNode.bind(this));//不bind的話nodeTap裡的this會變別人
+			.on('click', this.tapNode.bind(this))//不bind的話nodeTap裡的this會變別人
+			.on('hold', this.holdNode.bind(this));
 		
 		interact('.segment').
 			on('click', this.tapSegment.bind(this));
 
+		interact('#drawing_panel')
+			.on('click', this.tapBackground.bind(this));
+
 		document.addEventListener('keydown', e => {
-			var code = (e.keyCode ? e.keyCode : e.which);
-			switch(code){
-				case 32://space
-					this.tool = this.tools['select'];
-					break;
-				case 80://Pp
-					this.tool = this.tools['draw'];
-					break;
+			let code = (e.keyCode ? e.keyCode : e.which),
+				codeMap = new Map();
+			codeMap.set(32, 'select');
+			codeMap.set(80, 'draw');
+
+			let toolStr = codeMap.get(code);
+			if (toolStr !== undefined){
+				this.tool.switch();
+				this.tool = this.tools[toolStr];
+				this.tool.mount();
 			}
 		});
 	}
@@ -50,23 +53,28 @@ export default class PathController{
 	dragNode(event){
 		if (event.target.classList[0] !== 'node') return;
 		this.tool.dragNode(event);	
+		event.preventDefault();
 	}
 
 	tapNode(event){
 		if (event.target.classList[0] !== 'node') return;
 		this.tool.tapNode(event);
+		event.preventDefault();
 	}
-	doubleTapNode(event) {
+	holdNode(event) {
 		if (event.target.classList[0] !== 'node') return;
-		this.tool.doubleTapNode(event);
+		this.tool.holdNode(event);
+		event.preventDefault();
 	}
 	tapBackground(event){
 		if (event.target.nodeName !== 'svg') return;
 		this.tool.tapBackground(event);
+		event.preventDefault();
 	}
 	tapSegment(event){
 		if (event.target.nodeName !== 'path') return;
 		this.tool.tapPath(event);
+		event.preventDefault();
 	}
 	toggleSelected(node){
 		node.select = !node.select;
@@ -140,14 +148,22 @@ export default class PathController{
 			'start-node':seg[0].key,
 			'end-node':seg[seg.length-1].key
 		});
-		group.add(p);
+
+		let p_shadow = this.target.path(d);
+		p_shadow.attr({
+			'class':'segment shadow',
+			'path_key':path_key,
+			'start-node':seg[0].key,
+			'end-node':seg[seg.length-1].key
+		});
+		group.add(p, p_shadow);
 	}
 	makeNode(n, path_key, group) {
 		let node, node_class='node ';
 
 		switch(n.type){
 			case 'offcurve':
-				node = this.target.circle(n.x, n.y, 3);
+				node = this.target.circle(n.x, n.y, 5);
 				node_class+='offcurve';
 				break;
 			case 'curve':

@@ -10,11 +10,14 @@ class Tool{
 	tapBackground(){
 	}
 	
-	doubleTapNode(){}
+	holdNode(){}
 
 	dragNode(){}
 
 	tapPath(){}
+
+	switch(){}
+	mount(){}
 }
 
 class DrawTool extends Tool{
@@ -55,6 +58,10 @@ class DrawTool extends Tool{
 	addNodeToHandle(point){
 		this.handle.addPoint(point.x, point.y);
 	}
+
+	switch(){
+		this.handle = undefined;
+	}
 }
 
 class SelectTool extends Tool{
@@ -64,7 +71,13 @@ class SelectTool extends Tool{
 		this.delegate.toggleSelected(node);
 		this.delegate.render();
 	}
+	holdNode(event){
+		let path = this.delegate.getPath(event),
+			node = this.delegate.getNode(event);
 
+		path.transferNodeType(node.key);
+		this.delegate.render();
+	}
 	tapPath(event){
 		let path = this.delegate.getPath(event),
 			start = path.nodeMap.get(event.target.getAttribute('start-node')),
@@ -74,7 +87,6 @@ class SelectTool extends Tool{
 			path.makeLineSegmentToCurve(start, end);
 			this.delegate.render();
 		}
-
 	}
 	tapBackground(){
 		this.delegate.cleanSelectedNodes();
@@ -84,7 +96,6 @@ class SelectTool extends Tool{
 	dragNode(event){
 		let path = this.delegate.getPath(event);
 		path.nodeMove(event.target.id, event.dx, event.dy);
-
 		this.delegate.render();
 	}
 }

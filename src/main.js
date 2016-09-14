@@ -10,9 +10,10 @@ function init(){
 
 	svg.attr({
 		width:800,
-		height:600
+		height:600,
+		viewbox:'0,0,1000,1000'
 	});
-	
+
 	// let path = make_test_path();
 	// nodeController.pathMap.set(path.key, path);
 	nodeController.render();
