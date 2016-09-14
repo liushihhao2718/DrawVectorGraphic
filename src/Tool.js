@@ -1,12 +1,10 @@
-import Path from './Path';
-import Node from './Node';
-import _ from 'lodash/core';
-class Tool{
-	constructor(){}
+import {Node, Path} from './Path';
 
-	setDelegate(delegate){
-		this.delegate = delegate;
+class Tool{
+	constructor(delegate){
+		this.delegate = delegate;		
 	}
+
 	tapNode(){}
 
 	tapBackground(){
@@ -15,11 +13,13 @@ class Tool{
 	doubleTapNode(){}
 
 	dragNode(){}
+
+	tapPath(){}
 }
 
 class DrawTool extends Tool{
-	constructor(){
-		super();
+	constructor(delegate){
+		super(delegate);
 		this.handle = undefined;
 		
 	}
@@ -27,13 +27,12 @@ class DrawTool extends Tool{
 	tapNode(event){
 		if (!this.handle) return;
 		
-		let node = this.delegate.getNode(event),
-			firstNode = this.handle.firstNode();
-
-		if (this.handle.nodes.length > 2 && node === firstNode) {
+		if (this.handle.nodeMap.size > 2 && event.target.id === this.handle.head) {
 			this.handle.closePath();
 			this.handle = undefined;
+
 		}
+		this.delegate.render();
 	}
 
 	tapBackground(event){
@@ -41,29 +40,20 @@ class DrawTool extends Tool{
 		if (!this.handle) {
 			this.makePath(point);	
 		}
-
-		this.addNodeToHandle(point);
+		else{
+			this.addNodeToHandle(point);
+		}
+		this.delegate.render();
 	}
 
-	makePath(){
-		this.handle = new Path(`p-${this.delegate.pathIndex}`,
-			this.delegate.target);
-		
-		this.delegate.pathIndex++;
-	}
-
-	makeLineNode(point) {
-		let key = this.delegate.getKey(this.delegate.idIndex),
-			node = new Node(key, point, 'line', this.delegate.target);
-		this.delegate.nodeMap.set(key, node);
-		this.delegate.idIndex++;
-
-		return node;
+	makePath(point){
+		this.handle = new Path(
+			[new Node(point.x, point.y)],this.delegate.target);
+		this.delegate.setPath(this.handle);
 	}
 
 	addNodeToHandle(point){
-		let	node = this.makeLineNode(point);
-		this.handle.addNode(node);
+		this.handle.addPoint(point.x, point.y);
 	}
 }
 
@@ -71,21 +61,32 @@ class SelectTool extends Tool{
 
 	tapNode(event){
 		let node = this.delegate.getNode(event);
-		this.delegate.selectedNodes.push(node);
-		node.toggleSelected();
+		this.delegate.toggleSelected(node);
+		this.delegate.render();
 	}
 
+	tapPath(event){
+		let path = this.delegate.getPath(event),
+			start = path.nodeMap.get(event.target.getAttribute('start-node')),
+			end = path.nodeMap.get(event.target.getAttribute('end-node'));
+
+		if(start.next === end.key && end.prev === start.key && event.altKey){
+			path.makeLineSegmentToCurve(start, end);
+			this.delegate.render();
+		}
+
+	}
 	tapBackground(){
 		this.delegate.cleanSelectedNodes();
+		this.delegate.render();
 	}
 	
 	dragNode(event){
-		let node = this.delegate.getNode(event),
-			x = node.center.x + event.dx,
-			y = node.center.y + event.dy;
-		node.moveTo({x, y});
-		node.updateBesideSegment();
+		let path = this.delegate.getPath(event);
+		path.nodeMove(event.target.id, event.dx, event.dy);
+
+		this.delegate.render();
 	}
 }
 
-export {Tool, DrawTool, SelectTool};
+export {Tool,DrawTool, SelectTool};

@@ -12,7 +12,7 @@
         "indent": [
             "error",
             "tab",
-            {"switchcase":1}
+            {"SwitchCase":1}
         ],
         "linebreak-style": [
             "error",

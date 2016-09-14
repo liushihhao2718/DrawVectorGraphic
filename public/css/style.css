@@ -12,6 +12,10 @@
 	pointer-events:all;
 }
 
+.circle.select {
+	fill: green;
+}
+
 .offcurve {
 	fill: none;
 	stroke-width: 1;
@@ -29,6 +33,6 @@
 
 .segment {
 	stroke:#000;
-	stroke-width:2;
+	stroke-width:3;
 	fill:none;
 }

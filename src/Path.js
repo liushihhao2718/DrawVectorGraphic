@@ -6,6 +6,7 @@ class Node {
 		this.type = type;//type: curve, curve, smooth, offcurve
 		this.x = x;
 		this.y = y;
+		this.selected = false;
 
 		this.next = undefined;
 		this.prev = undefined;
@@ -121,14 +122,13 @@ class Path{
 	//新的node必須都是line node，然後透過其他操作來改變
 	addPoint(x, y){
 		if(this.closed) return;
-		let new_node = new Node(x,y,'curve'),
-			key = uuid.v1();
+		let new_node = new Node(x,y,'curve');
 
 		new_node.prev = this.tail;
-		this.nodeMap.get(this.tail).next = key;
+		this.nodeMap.get(this.tail).next = new_node.key;
 
-		this.nodeMap.set(key, new_node);
-		this.tail = key;
+		this.nodeMap.set(new_node.key, new_node);
+		this.tail = new_node.key;
 	}
 
 	cut(){}
@@ -273,7 +273,7 @@ class Path{
 					else error(1);
 					break;
 				case 'curve':
-					if(n.type === 'curve' || n.type === 'curve'){
+					if(n.type === 'curve'){
 						state = 'curve';
 						segments.push([buffer[0], n]);
 						buffer.pop();
@@ -312,19 +312,19 @@ class Path{
 			error_code = code;
 		}
 	}
-	nodeMove(event) {
-		let node = this.nodeMap.get(event.target.id);
+	nodeMove(key, dx, dy) {
+		let node = this.nodeMap.get(key);
 		if (node.type === 'smooth') {
 			let prev = this.nodeMap.get(node.prev),
 				next = this.nodeMap.get(node.next);
 
 			makeSmooth(prev, node, next);
-			node.x += event.dx;
-			node.y += event.dy;
-			prev.x += event.dx;
-			prev.y += event.dy;
-			next.x += event.dx;
-			next.y += event.dy;
+			node.x += dx;
+			node.y += dy;
+			prev.x += dx;
+			prev.y += dy;
+			next.x += dx;
+			next.y += dy;
 		}
 		else if(node.type === 'curve') {
 
@@ -332,26 +332,26 @@ class Path{
 				next = this.nodeMap.get(node.next);
 
 			if (prev.type === 'offcurve') {
-				prev.x += event.dx;
-				prev.y += event.dy;
+				prev.x += dx;
+				prev.y += dy;
 			}
 			if (next.type === 'offcurve') {
-				next.x += event.dx;
-				next.y += event.dy;
+				next.x += dx;
+				next.y += dy;
 			}
-			node.x += event.dx;
-			node.y += event.dy;
+			node.x += dx;
+			node.y += dy;
 		}
 		else if(node.type === 'curve'){
-			node.x += event.dx;
-			node.y += event.dy;
+			node.x += dx;
+			node.y += dy;
 		}
 		else if(node.type === 'offcurve'){
 			let prev = this.nodeMap.get(node.prev),
 				next = this.nodeMap.get(node.next);
 
-			node.x += event.dx;
-			node.y += event.dy;
+			node.x += dx;
+			node.y += dy;
 
 			if (prev.type === 'smooth') {
 				makeSmooth(node, prev, this.nodeMap.get(prev.prev));
@@ -384,10 +384,29 @@ class Path{
 		this.nodeMap.get(this.head).prev = this.tail;
 		this.nodeMap.get(this.tail).next = this.head;
 	}
-	makeLineSegmentToCurve(c1, c2){
+	makeLineSegmentToCurve(p1, p2){
+		let in1 = this.interpolation(p1, p2),
+			in2 = this.interpolation(p2, p1),
+			c1 = new Node(in1.x, in1.y, 'offcurve'),
+			c2 = new Node(in2.x, in2.y, 'offcurve');
+
+		this.nodeMap.set(c1.key, c1);
+		this.nodeMap.set(c2.key, c2);
+
+		p1.next = c1.key;
+		c1.prev = p1.key;
+		c1.next = c2.key;
+		c2.prev = c1.key;
+		c2.next = p2.key;
+		p2.prev = c2.key;
 
 	}
-
+	interpolation(p1, p2){
+		return {
+			'x' : Math.floor( (2*p1.x + p2.x)/3 ),
+			'y' : Math.floor( (2*p1.y + p2.y)/3 )
+		};
+	}
 }
 
 export {Node, Path};
