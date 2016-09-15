@@ -1,8 +1,27 @@
 import {Node, Path} from './Path';
 
+class ToolFactory{
+	constructor(delegate){
+		this.tools = {
+			'draw':new DrawTool(delegate),
+			'select':new SelectTool(delegate)
+		};
+		this.tool = this.tools['select'];
+	}
+
+	switchTool(str){
+		this.tool.switch();
+		this.tool = this.tools[str];
+		this.tool.mount();
+
+		return this.tool;
+	}
+}
+
 class Tool{
 	constructor(delegate){
-		this.delegate = delegate;		
+		this.delegate = delegate;
+		this.tag = document.getElementById('tool');
 	}
 
 	tapNode(){}
@@ -17,7 +36,9 @@ class Tool{
 	tapPath(){}
 
 	switch(){}
-	mount(){}
+	mount(){
+		this.tag.textContent = this.constructor.name;
+	}
 }
 
 class DrawTool extends Tool{
@@ -100,4 +121,4 @@ class SelectTool extends Tool{
 	}
 }
 
-export {Tool,DrawTool, SelectTool};
+export {ToolFactory};

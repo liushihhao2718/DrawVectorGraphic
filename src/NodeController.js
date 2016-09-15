@@ -1,5 +1,4 @@
-import interact from 'interact.js'; 
-import {DrawTool, SelectTool} from './Tool';
+import MouseEventHanlder from './MouseEventHanlder';
 
 export default class PathController{
 	constructor(target){
@@ -7,74 +6,8 @@ export default class PathController{
 		this.pathMap = new Map();
 		this.selectedNodes = new Set();
 
-		this.tools = {
-			'draw':new DrawTool(this),
-			'select':new SelectTool(this)
-		};
-
-		this.tool = this.tools['select'];
-		this.setListener();
-	}
-	setListener() {
-		
-		interact('.node')
-			.draggable({onmove:this.dragNode.bind(this)})
-			.on('click', this.tapNode.bind(this))//不bind的話nodeTap裡的this會變別人
-			.on('hold', this.holdNode.bind(this));
-		
-		interact('.segment').
-			on('click', this.tapSegment.bind(this));
-
-		interact('#drawing_panel')
-			.on('click', this.tapBackground.bind(this));
-
-		document.addEventListener('keydown', e => {
-			let code = (e.keyCode ? e.keyCode : e.which),
-				codeMap = new Map();
-			codeMap.set(32, 'select');
-			codeMap.set(80, 'draw');
-
-			let toolStr = codeMap.get(code);
-			if (toolStr !== undefined){
-				this.tool.switch();
-				this.tool = this.tools[toolStr];
-				this.tool.mount();
-			}
-		});
-	}
-	setPath(path){
-		this.pathMap.set(path.key, path);
-	}
-	getNode(event) {
-		let path = this.pathMap.get(event.target.getAttribute('path_key'));
-		return path.nodeMap.get(event.target.id);
-	}
-	
-	dragNode(event){
-		if (event.target.classList[0] !== 'node') return;
-		this.tool.dragNode(event);	
-		event.preventDefault();
-	}
-
-	tapNode(event){
-		if (event.target.classList[0] !== 'node') return;
-		this.tool.tapNode(event);
-		event.preventDefault();
-	}
-	holdNode(event) {
-		if (event.target.classList[0] !== 'node') return;
-		this.tool.holdNode(event);
-		event.preventDefault();
-	}
-	tapBackground(event){
-		if (event.target.nodeName !== 'svg') return;
-		this.tool.tapBackground(event);
-		event.preventDefault();
-	}
-	tapSegment(event){
-		if (event.target.nodeName !== 'path') return;
-		this.tool.tapPath(event);
-		event.preventDefault();
+		this.mouseEvent = new MouseEventHanlder(this);
+		this.mouseEvent.setListener();
 	}
 	toggleSelected(node){
 		node.select = !node.select;
@@ -86,16 +19,22 @@ export default class PathController{
 			this.selectedNodes.delete(node);
 		}
 	}
-
 	cleanSelectedNodes(){
 		for(let n of this.selectedNodes){
 			n.select = false;
 		}
 		this.selectedNodes.clear();
 	}
+	getNode(event) {
+		let path = this.pathMap.get(event.target.getAttribute('path_key'));
+		return path.nodeMap.get(event.target.id);
+	}
 	getPath(event){
 		let path_key = event.target.getAttribute('path_key');
 		return this.pathMap.get(path_key);
+	}
+	setPath(path){
+		this.pathMap.set(path.key, path);
 	}
 	positionOnDrawingPanel(event) {
 		let svgtag = document.getElementById('drawing_panel'),
@@ -109,7 +48,6 @@ export default class PathController{
 			this.makeViewModel(p);
 		}
 	}
-
 	makeViewModel(path){
 		let group = this.target.g();
 		group.attr('id', path.key);
