@@ -19,13 +19,17 @@ export default class MouseEventHanlder {
 		interact('#drawing_panel')
 			.on('click', this.tapBackground.bind(this));
 
+		this.codeMap = new Map();
+		this.codeMap.set(32, 'select');
+		this.codeMap.set(80, 'draw');
+
 		document.addEventListener('keydown', e => {
 			let code = (e.keyCode ? e.keyCode : e.which),
-				codeMap = new Map();
-			codeMap.set(32, 'select');
-			codeMap.set(80, 'draw');
+				str = this.codeMap.get(code);
 
-			this.tool = this.toolFactory.switchTool(codeMap.get(code));
+			if (str != undefined) {
+				this.tool = this.toolFactory.switchTool(str);
+			}
 		});
 	}
 	

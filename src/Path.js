@@ -244,10 +244,10 @@ class Path{
 			this.nodeMap.delete(rightKey);
 		}
 	}
-	isOff(k) {
-		if(k === undefined) return false;
+	isOff(key) {
+		if(key === undefined) return false;
 
-		return (this.nodeMap.get(k).type == 'offcurve');
+		return (this.nodeMap.get(key).type == 'offcurve');
 	}
 	renderSegment(){
 		let state = 'start',buffer=[], segments = [];
@@ -370,10 +370,10 @@ class Path{
 			let d1 = Math.sqrt(Math.pow(v1.x, 2) + Math.pow(v1.y, 2)),
 				d2 = Math.sqrt(Math.pow(v2.x, 2) + Math.pow(v2.y, 2));
 			let dot = 	(v1.x * v2.x + v1.y*v2.y)/(d1*d2);
-			if (Math.abs( dot - 1 )>= 0.01) {
+			if (Math.abs( dot - 1 )>= 0.001) {
 				
-				o2.x = s.x + v1.x * d2 / Math.floor(d1);
-				o2.y = s.y + v1.y * d2 / Math.floor(d1);
+				o2.x = Math.floor(s.x + v1.x * d2 / d1);
+				o2.y = Math.floor(s.y + v1.y * d2 / d1);
 			}
 		}
 	}
