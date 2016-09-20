@@ -3,7 +3,7 @@ import {Node, Path} from './Path';
 class ToolFactory{
 	constructor(delegate){
 		this.tools = {
-			'draw':new DrawTool(delegate),
+			'pen':new DrawTool(delegate),
 			'select':new SelectTool(delegate)
 		};
 		this.tool = this.tools['select'];
@@ -121,4 +121,4 @@ class SelectTool extends Tool{
 	}
 }
 
-export {ToolFactory};
+export default ToolFactory;

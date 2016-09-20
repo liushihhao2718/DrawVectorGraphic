@@ -3,11 +3,31 @@
 <head>
 	<meta charset="utf-8">
 	<title>skeleton</title>
+	<link rel="stylesheet" type="text/css" href="/css/cutestrap.min.css">
 	<link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 <body>
-	<svg id="drawing_panel"></svg>
-	<p id="tool"></p>
+	<section class="grid wrapper">
+		<div class=".column--heavy">
+			<section id="button-list" class="grid">
+				<div>
+					<button id="select-btn">Select (S)</button>
+				</div>
+				<div>
+					<button id="pen-btn">Pen (P)</button>
+				</div>
+				<div>
+					<button>Group (G)</button>
+				</div>
+				<div>
+					<button>Default</button>
+				</div>
+			</section>
+			<svg id="drawing_panel"></svg>
+			<p id="tool"></p>
+		</div>
+		<div class=".column--light">25% Column</div>
+	</section>
 </body>
 
 <script src="js/main.js"></script>

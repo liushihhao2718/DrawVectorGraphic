@@ -1,9 +1,8 @@
 import interact from 'interact.js';
-import {ToolFactory} from './Tool';
 
 export default class MouseEventHanlder {
-	constructor(controller){
-		this.toolFactory = new ToolFactory(controller);
+	constructor(factory){
+		this.toolFactory = factory;
 		this.tool = this.toolFactory.switchTool('select');
 	}
 
@@ -20,8 +19,8 @@ export default class MouseEventHanlder {
 			.on('click', this.tapBackground.bind(this));
 
 		this.codeMap = new Map();
-		this.codeMap.set(32, 'select');
-		this.codeMap.set(80, 'draw');
+		this.codeMap.set(83, 'select');//Ss
+		this.codeMap.set(80, 'pen');//Pp
 
 		document.addEventListener('keydown', e => {
 			let code = (e.keyCode ? e.keyCode : e.which),
