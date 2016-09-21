@@ -16,8 +16,8 @@ export default class ToolFactory{
 	}
 
 	static getContext(){
-	    return this[singleton];
-   	}
+		return this[singleton];
+	}
 
 	switchTool(str){
 		this.tool.switch();
