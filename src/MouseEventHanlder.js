@@ -1,9 +1,10 @@
 import interact from 'interact.js';
+import ToolFactory from './Tool';
 
 export default class MouseEventHanlder {
-	constructor(factory){
-		this.toolFactory = factory;
-		this.tool = this.toolFactory.switchTool('select');
+	constructor(){
+		this.toolContext = ToolFactory.getContext();
+		this.toolContext.switchTool('select');
 	}
 
 	setListener() {
@@ -27,35 +28,35 @@ export default class MouseEventHanlder {
 				str = this.codeMap.get(code);
 
 			if (str != undefined) {
-				this.tool = this.toolFactory.switchTool(str);
+				this.toolContext.switchTool(str);
 			}
 		});
 	}
 	
 	dragNode(event){
 		if (event.target.classList[0] !== 'node') return;
-		this.tool.dragNode(event);	
+		this.toolContext.tool.dragNode(event);	
 		event.preventDefault();
 	}
 
 	tapNode(event){
 		if (event.target.classList[0] !== 'node') return;
-		this.tool.tapNode(event);
+		this.toolContext.tool.tapNode(event);
 		event.preventDefault();
 	}
 	holdNode(event) {
 		if (event.target.classList[0] !== 'node') return;
-		this.tool.holdNode(event);
+		this.toolContext.tool.holdNode(event);
 		event.preventDefault();
 	}
 	tapBackground(event){
 		if (event.target.nodeName !== 'svg') return;
-		this.tool.tapBackground(event);
+		this.toolContext.tool.tapBackground(event);
 		event.preventDefault();
 	}
 	tapSegment(event){
 		if (event.target.nodeName !== 'path') return;
-		this.tool.tapPath(event);
+		this.toolContext.tool.tapPath(event);
 		event.preventDefault();
 	}
 }
