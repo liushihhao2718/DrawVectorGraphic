@@ -1,5 +1,5 @@
 import interact from 'interact.js';
-import ToolFactory from './Tool';
+import ToolFactory from './Tool/ToolFactory.js';
 
 export default class MouseEventHanlder {
 	constructor(){

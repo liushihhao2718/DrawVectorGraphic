@@ -1,5 +1,5 @@
 import React from 'react';
-import ToolFactory from '../Tool';
+import ToolFactory from '../Tool/ToolFactory.js';
 let shortid = require( 'shortid');
 
 class ToolList extends React.Component {
