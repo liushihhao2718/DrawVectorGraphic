@@ -12,7 +12,7 @@ export default class MouseEventHanlder {
 			.draggable({onmove:this.dragNode.bind(this)})
 			.on('click', this.tapNode.bind(this))//不bind的話nodeTap裡的this會變別人
 			.on('hold', this.holdNode.bind(this));
-		
+
 		interact('.segment').
 			on('click', this.tapSegment.bind(this));
 
@@ -32,10 +32,10 @@ export default class MouseEventHanlder {
 			}
 		});
 	}
-	
+
 	dragNode(event){
 		if (event.target.classList[0] !== 'node') return;
-		this.toolContext.tool.dragNode(event);	
+		this.toolContext.tool.dragNode(event);
 		event.preventDefault();
 	}
 
@@ -57,6 +57,5 @@ export default class MouseEventHanlder {
 	tapSegment(event){
 		if (event.target.nodeName !== 'path') return;
 		this.toolContext.tool.tapPath(event);
-		event.preventDefault();
 	}
 }

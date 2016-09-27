@@ -24,8 +24,29 @@ class Path{
 		this.nodeMap = new Map();
 		this.head = undefined;
 		this.tail = undefined;
+		this.selected = false;
 
 		this.link(nodes, closed);
+	}
+	bbox(){
+		let lux = Number.MAX_VALUE,
+			luy = Number.MAX_VALUE,
+			rbx = Number.MIN_VALUE,
+			rby = Number.MIN_VALUE;
+
+		for(let v of this.nodeMap.values()) {
+			if (lux > v.x) lux = v.x;
+			if (luy > v.y) luy = v.y;
+			if (rbx < v.x) rbx = v.x;
+			if (rby < v.y) rby = v.y;
+		}
+
+		return {
+			'x': lux,
+			'y': luy,
+			'width': Math.abs(lux - rbx),
+			'height': Math.abs(luy - rby)
+		};
 	}
 	link(nodes, closed){
 
@@ -162,7 +183,6 @@ class Path{
 			 *
 			 *  			tail == L
 			*/
-			console.log(this.nodeMap.get(leftKey).toString());
 			if(leftKey){
 				if (this.isOff(leftKey)) {
 					let left2Key = this.nodeMap.get(leftKey).prev;

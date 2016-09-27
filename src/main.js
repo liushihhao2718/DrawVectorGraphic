@@ -1,4 +1,3 @@
-import Snap from 'snapsvg';
 import PathController from './PathController';
 import MouseEventHanlder from './MouseEventHanlder';
 // import ButtonEventHandler from './ButtonEventHandler';
@@ -11,13 +10,12 @@ init();
 
 function init(){
 	
-	let svg = Snap('#drawing_panel'),
+	let svg = document.getElementById('drawing_panel'),
 		pathController = new PathController(svg);
 
-	svg.attr({
-		width:800,
-		height:600
-	});
+	svg.setAttribute('width', '800');
+	svg.setAttribute('height','600');
+
 
 	ToolFactory.createContext(pathController);
 

@@ -1,6 +1,6 @@
 import SelectTool from './SelectTool';
 import DrawTool from './DrawTool';
-
+import GroupTool from './GroupTool';
 let singleton = Symbol();
 
 export default class ToolFactory{
@@ -8,7 +8,7 @@ export default class ToolFactory{
 		this.tools = {
 			'pen':new DrawTool(delegate),
 			'select':new SelectTool(delegate),
-			'group': new SelectTool(delegate)
+			'group': new GroupTool(delegate)
 		};
 		this.tool = this.tools['select'];
 	}

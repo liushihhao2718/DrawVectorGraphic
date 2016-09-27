@@ -1,0 +1,1087 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"for",
+				"from"
+			],
+			[
+				"se",
+				"section"
+			],
+			[
+				"s",
+				"section"
+			],
+			[
+				"too",
+				"tools"
+			],
+			[
+				"T",
+				"ToolFactory"
+			],
+			[
+				"ta",
+				"tag"
+			],
+			[
+				"get",
+				"get\tGet Elements"
+			],
+			[
+				"tool",
+				"tools"
+			],
+			[
+				"set",
+				"setListener"
+			],
+			[
+				"code",
+				"codeMap"
+			],
+			[
+				"node",
+				"nodePositionCheck"
+			],
+			[
+				"nde",
+				"nodeMap"
+			],
+			[
+				"le",
+				"length"
+			],
+			[
+				"ti",
+				"this"
+			],
+			[
+				"seg",
+				"segment"
+			],
+			[
+				"sle",
+				"select"
+			],
+			[
+				"sele",
+				"selectedNodes"
+			],
+			[
+				"sel",
+				"selectedNodes"
+			],
+			[
+				"ca",
+				"charCodeAt"
+			],
+			[
+				"path",
+				"pathMap"
+			],
+			[
+				"pa",
+				"pathMap"
+			],
+			[
+				"con",
+				"control_Seg_2"
+			],
+			[
+				"Node",
+				"NodeController"
+			],
+			[
+				"lef",
+				"leftKey"
+			],
+			[
+				"l",
+				"leftKey"
+			],
+			[
+				"let",
+				"left2Key"
+			],
+			[
+				"rig",
+				"right2Key"
+			],
+			[
+				"right",
+				"rightKey"
+			],
+			[
+				"ri",
+				"rightKey"
+			],
+			[
+				"if",
+				"if\tif"
+			],
+			[
+				"del",
+				"delete"
+			],
+			[
+				"de",
+				"delete"
+			],
+			[
+				"left",
+				"left2Key"
+			],
+			[
+				"close",
+				"closed"
+			],
+			[
+				"prev",
+				"prev_key"
+			],
+			[
+				"pre",
+				"prev_key"
+			],
+			[
+				"ne",
+				"next"
+			],
+			[
+				"nex",
+				"next_key"
+			],
+			[
+				"ma",
+				"mapIter"
+			],
+			[
+				"time",
+				"times"
+			],
+			[
+				"new",
+				"new_node"
+			],
+			[
+				"len",
+				"length-1"
+			],
+			[
+				"lin",
+				"linkTheChain"
+			],
+			[
+				"dele",
+				"deleteNode"
+			],
+			[
+				"to",
+				"toString"
+			],
+			[
+				"error",
+				"error_code"
+			],
+			[
+				"erro",
+				"error_code"
+			],
+			[
+				"update",
+				"updatePrevSegment"
+			],
+			[
+				"li",
+				"link\tTag"
+			],
+			[
+				"legt",
+				"leftSeg"
+			],
+			[
+				"make",
+				"makeLineDescript"
+			],
+			[
+				"fr",
+				"firstNode"
+			],
+			[
+				"dra",
+				"drawLineSegment"
+			],
+			[
+				"tap",
+				"tapBackground"
+			],
+			[
+				"po",
+				"points"
+			],
+			[
+				"sta",
+				"state\tReact: this.state."
+			],
+			[
+				"pro",
+				"props\tReact: this.props."
+			],
+			[
+				"R",
+				"React.Component\tComponent Template (ES2015)"
+			],
+			[
+				"ex",
+				"extends"
+			],
+			[
+				"D",
+				"DrawingPanel"
+			],
+			[
+				"curve",
+				"curveCommand"
+			],
+			[
+				"test",
+				"test_path"
+			],
+			[
+				"ins",
+				"instanceof"
+			],
+			[
+				"point",
+				"pointArray"
+			],
+			[
+				"append",
+				"appendLineWithPoint"
+			],
+			[
+				"line",
+				"linePath"
+			],
+			[
+				"Line",
+				"LineCommand"
+			],
+			[
+				"pu",
+				"push"
+			],
+			[
+				"me",
+				"meta\tTag"
+			],
+			[
+				"Po",
+				"Point\t[type: {x: number, y: number}]"
+			],
+			[
+				"P",
+				"Pedicel\t[type: {Q: {x: number, y: number}, end: {x: number, y: number}}]"
+			],
+			[
+				"start",
+				"startPointPosition"
+			],
+			[
+				"send",
+				"sendRequest"
+			],
+			[
+				"vin",
+				"vines"
+			],
+			[
+				"Vine",
+				"VineProto"
+			],
+			[
+				"flower",
+				"flowerProtos"
+			],
+			[
+				"builder",
+				"FlowerBuilder"
+			],
+			[
+				"fl",
+				"flowers"
+			],
+			[
+				"Flower",
+				"FlowerBuilder"
+			],
+			[
+				"Vie",
+				"VineBuilder"
+			],
+			[
+				"json",
+				"jsonArray"
+			],
+			[
+				"vine",
+				"VineProto"
+			],
+			[
+				"err",
+				"error\tconsole"
+			],
+			[
+				"ped",
+				"pedicelPath"
+			],
+			[
+				"fi",
+				"fill"
+			],
+			[
+				"flo",
+				"flowerProtos"
+			],
+			[
+				"Flo",
+				"FlowerProto"
+			],
+			[
+				"sen",
+				"sendRequest"
+			],
+			[
+				"F",
+				"FlowerBuilder"
+			],
+			[
+				"log",
+				"log\tconsole"
+			],
+			[
+				"lo",
+				"log\tconsole"
+			],
+			[
+				"Ma",
+				"matrix"
+			],
+			[
+				"dir",
+				"directLine"
+			],
+			[
+				"fea",
+				"features_train"
+			],
+			[
+				"feat",
+				"features_test"
+			],
+			[
+				"lab",
+				"labels_train"
+			],
+			[
+				"there",
+				"thereAreNoLetters"
+			],
+			[
+				"th",
+				"There"
+			],
+			[
+				"el",
+				"elif\telse if"
+			],
+			[
+				"pl",
+				"pluralModifier"
+			],
+			[
+				"v",
+				"verb"
+			],
+			[
+				"list",
+				"list1"
+			],
+			[
+				"thre",
+				"THREE"
+			],
+			[
+				"thr",
+				"THREE"
+			],
+			[
+				"h",
+				"HEIGHT"
+			],
+			[
+				"Wi",
+				"WIDTH"
+			],
+			[
+				"sc",
+				"scene"
+			],
+			[
+				"html",
+				"html\thtml"
+			],
+			[
+				"div",
+				"div\tTag"
+			],
+			[
+				"style",
+				"style\tAttr"
+			],
+			[
+				"svg",
+				"svg_tag"
+			],
+			[
+				"ba",
+				"background-color"
+			],
+			[
+				"bo",
+				"bold"
+			],
+			[
+				"rg",
+				"rgba()"
+			],
+			[
+				"bol",
+				"bolder"
+			],
+			[
+				"fon",
+				"font-weight"
+			],
+			[
+				"font",
+				"font-size"
+			],
+			[
+				"tex",
+				"text-shadow"
+			],
+			[
+				"proto",
+				"proto-element"
+			],
+			[
+				"font-s",
+				"font-size"
+			],
+			[
+				"u",
+				"Ultra"
+			],
+			[
+				"font-sty",
+				"font-style"
+			],
+			[
+				"fn",
+				"font-family"
+			],
+			[
+				"c",
+				"createElement"
+			],
+			[
+				"mar",
+				"margin"
+			],
+			[
+				"back",
+				"background-image"
+			],
+			[
+				"circle",
+				"circle1"
+			],
+			[
+				"p",
+				"pattern"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "src/main.js",
+			"settings":
+			{
+				"buffer_size": 714,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+		[
+			[
+				[
+					"Packages/Default/Syntax Tests.sublime-build",
+					""
+				],
+				[
+					"Packages/Default/Syntax Tests.sublime-build",
+					"All Syntaxes"
+				],
+				[
+					"Packages/Default/Syntax Tests.sublime-build",
+					"Performance"
+				],
+				[
+					"Packages/Default/Syntax Tests.sublime-build",
+					"Regex Compatibility"
+				]
+			],
+			[
+				"Packages/Default/Syntax Tests.sublime-build",
+				""
+			]
+		]
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"last_filter": "in",
+		"selected_items":
+		[
+			[
+				"in",
+				"Package Control: Install Package"
+			],
+			[
+				"re",
+				"Package Control: Remove Package"
+			],
+			[
+				"list",
+				"Package Control: List Packages"
+			],
+			[
+				"js",
+				"Set Syntax: JavaScript (Babel)"
+			],
+			[
+				"side",
+				"View: Toggle Side Bar"
+			],
+			[
+				"jsn",
+				"Set Syntax: JSON"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"ja",
+				"Set Syntax: JavaScript (Babel)"
+			],
+			[
+				"min",
+				"View: Toggle Minimap"
+			],
+			[
+				"lint",
+				"SublimeLinter: Toggle Linter"
+			],
+			[
+				"flow",
+				"View Type (Flow)"
+			],
+			[
+				"html",
+				"Set Syntax: HTML"
+			],
+			[
+				"sy la",
+				"Set Syntax: LaTeX"
+			],
+			[
+				"flo",
+				"View Type (Flow)"
+			],
+			[
+				"sublime",
+				"SublimeLinter: Toggle Linter"
+			],
+			[
+				"json",
+				"Set Syntax: JSON (Javascript Next)"
+			],
+			[
+				"pack",
+				"Package Control: List Packages"
+			],
+			[
+				"sy js",
+				"Set Syntax: JavaScript Next"
+			],
+			[
+				"prew",
+				"Markdown Preview: Preview in Browser"
+			],
+			[
+				"slide",
+				"Markdown Slideshow"
+			],
+			[
+				"mark",
+				"Set Syntax: Markdown"
+			],
+			[
+				"sy jsx",
+				"Set Syntax: JSX"
+			],
+			[
+				"remo",
+				"Package Control: Remove Package"
+			],
+			[
+				"java",
+				"Set Syntax: Java"
+			],
+			[
+				"gutter",
+				"SublimeLinter: Choose Gutter Theme"
+			],
+			[
+				"linter",
+				"SublimeLinter: Disable Linting"
+			],
+			[
+				"sy html",
+				"Set Syntax: HTML"
+			],
+			[
+				"sublim",
+				"SublimeLinter: Choose Gutter Theme"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"sy ht",
+				"Set Syntax: HTML"
+			],
+			[
+				"sy c",
+				"Set Syntax: C++"
+			]
+		],
+		"width": 467.0
+	},
+	"console":
+	{
+		"height": 175.0,
+		"history":
+		[
+			"clear",
+			"import urllib.request,os,hashlib; h = '2915d1851351e5ee549c20394736b442' + '8bc59f460fa1548d1514676163dafc88'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)",
+			"flow"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/liushihao/DrawVectorGraphic",
+		"/Users/liushihao/DrawVectorGraphic/src",
+		"/Users/liushihao/DrawVectorGraphic/src/Tool"
+	],
+	"file_history":
+	[
+		"/Users/liushihao/DrawVectorGraphic/public/js/main.js",
+		"/Users/liushihao/DrawVectorGraphic/src/ViewModel/ToolList.jsx",
+		"/Users/liushihao/DrawVectorGraphic/src/Tool/DrawTool.js",
+		"/Users/liushihao/DrawVectorGraphic/src/Tool/ToolFactory.js",
+		"/Users/liushihao/DrawVectorGraphic/src/Tool/SelectTool.js",
+		"/Users/liushihao/DrawVectorGraphic/src/Tool/Tool.js",
+		"/Users/liushihao/Library/Application Support/Sublime Text 3/Packages/User/SublimeLinter.sublime-settings",
+		"/Users/liushihao/DrawVectorGraphic/src/MouseEventHanlder.js",
+		"/Users/liushihao/DrawVectorGraphic/src/Tool.js",
+		"/Users/liushihao/DrawVectorGraphic/src/PathController.js",
+		"/Users/liushihao/Library/Application Support/Sublime Text 3/Packages/User/Default (OSX).sublime-keymap",
+		"/Users/liushihao/Library/Application Support/Sublime Text 3/Packages/Package Control/Package Control.sublime-settings",
+		"/Users/liushihao/DrawVectorGraphic/src/ButtonEventHandler.js",
+		"/Users/liushihao/DrawVectorGraphic/src/ToolList.js",
+		"/Users/liushihao/DrawVectorGraphic/src/NodeController.js",
+		"/Users/liushihao/DrawVectorGraphic/public/index.html",
+		"/Users/liushihao/DrawVectorGraphic/public/css/style.css",
+		"/Users/liushihao/DrawVectorGraphic/.eslintrc.json",
+		"/Users/liushihao/drawthreejs/.eslintrc.json",
+		"/Users/liushihao/DrawVectorGraphic/src/Path.js",
+		"/Users/liushihao/DrawVectorGraphic/test/test_Point.js",
+		"/Users/liushihao/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/Users/liushihao/Library/Application Support/Sublime Text 3/Packages/User/JSON.sublime-settings",
+		"/Users/liushihao/Library/Application Support/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
+		"/Users/liushihao/DrawVectorGraphic/css/style.css",
+		"/Users/liushihao/DrawVectorGraphic/src/main.js",
+		"/Users/liushihao/DrawVectorGraphic/package.json",
+		"/Users/liushihao/Documents/font/上課練習.glyphs",
+		"/Users/liushihao/Documents/font/example.glyphs",
+		"/Users/liushihao/Desktop/react-svgdraw/public/index.html",
+		"/Users/liushihao/Desktop/react-svgdraw/package.json",
+		"/Users/liushihao/spiral/package.json",
+		"/Users/liushihao/react-skeketon/package.json",
+		"/Users/liushihao/Downloads/genWalk.txt",
+		"/Users/liushihao/Desktop/蝙蝠侠前传：黑暗骑士.The Dark Knight.2008.BDRip.1080p.x264.DTS-CHD.D1.cht.srt",
+		"/Users/liushihao/Downloads/Payload/PPJailbreakCarrier.app/Info.plist",
+		"/Users/liushihao/Downloads/Payload/PPJailbreakCarrier.app/embedded.mobileprovision",
+		"/Users/liushihao/Desktop/sp.html",
+		"/Users/liushihao/vitae.mdown",
+		"/Users/liushihao/vine/src/main.js",
+		"/Users/liushihao/vine/src/Entity/FlowerEntity.js",
+		"/Users/liushihao/vine/src/ViewModel/FlowerProto.js",
+		"/Users/liushihao/vine/src/Entity/VineBuilder.js",
+		"/Users/liushihao/vine/src/Entity/Vine.js",
+		"/Users/liushihao/vine/src/ViewModel/VineProto.js",
+		"/Users/liushihao/vine/.flowconfig",
+		"/Users/liushihao/vine/.babelrc",
+		"/Users/liushihao/Library/Application Support/Sublime Text 3/Packages/User/FlowIDE.sublime-settings",
+		"/Users/liushihao/Library/Application Support/Sublime Text 3/Packages/FlowIDE/FlowIDE.sublime-settings",
+		"/Users/liushihao/Downloads/tuhaoServer.pem.txt",
+		"/Users/liushihao/vine/package.json",
+		"/Users/liushihao/vine/src/Entity/FlowerBuilder.js",
+		"/Users/liushihao/vine/.eslintrc.json",
+		"/Users/liushihao/vine/public/flower.json",
+		"/Users/liushihao/vine/public/js/main.js",
+		"/Users/liushihao/vine/src/ViewModel/Flower.js",
+		"/Users/liushihao/vine/src/Entity/Position.js",
+		"/Users/liushihao/vine/.gitignore",
+		"/Users/liushihao/react-skeketon/src/main.jsx",
+		"/Users/liushihao/Desktop/react-memory/public/index.html",
+		"/Users/liushihao/Desktop/react-memory/src/main.jsx",
+		"/Users/liushihao/Desktop/react-memory/package.json",
+		"/Users/liushihao/cg2014s-master/example/lib/ZipModel.js",
+		"/Users/liushihao/ud120-projects/svm/svm_author_id.py",
+		"/Users/liushihao/ud120-projects/tools/email_preprocess.py",
+		"/Users/liushihao/ud120-projects/decision_tree/dt_author_id.py",
+		"/Users/liushihao/ud120-projects/choose_your_own/your_algorithm.py",
+		"/Users/liushihao/ud120-projects/decision_tree/svm/svm_author_id.py",
+		"/Users/liushihao/ud120-projects/naive_bayes/untitled.py",
+		"/Users/liushihao/ud120-projects/naive_bayes/nb_author_id.py",
+		"/Users/liushihao/react-skeketon/src/components/ContentPanel/ContentPanel.jsx",
+		"/Users/liushihao/Desktop/flow test/js/index.js",
+		"/Users/liushihao/Desktop/flow test/.flowconfig",
+		"/Users/liushihao/Desktop/flow test/index.js",
+		"/Users/liushihao/Library/Application Support/Sublime Text 3/Packages/SublimeLinter/README.md",
+		"/Users/liushihao/Library/Application Support/Sublime Text 3/Packages/User/JavaScript.sublime-settings",
+		"/Users/liushihao/Library/Application Support/Sublime Text 3/Packages/Default/Default (OSX).sublime-keymap",
+		"/Users/liushihao/Desktop/flow test/package.json",
+		"/Users/liushihao/Documents/koa_static/main.js",
+		"/Users/liushihao/Downloads/a4-css-page-template/index.html",
+		"/Users/liushihao/Desktop/test.js",
+		"/Users/liushihao/Desktop/Idle Civilization.app/Contents/MacOS/run.sh",
+		"/Users/liushihao/Desktop/three/three.html",
+		"/Users/liushihao/Desktop/three/flowtest.js",
+		"/Users/liushihao/Library/Application Support/Sublime Text 3/Packages/SublimeLinter/Default (OSX).sublime-keymap",
+		"/Users/liushihao/Downloads/threejs_logo_example/index.html",
+		"/Users/liushihao/Downloads/threejs_logo_example/models/treehouse_logo.js",
+		"/Users/liushihao/Desktop/three.html",
+		"/Users/liushihao/Downloads/three.js-master/examples/canvas_camera_orthographic.html",
+		"/Users/liushihao/Downloads/three.js-master/bower.json",
+		"/Users/liushihao/.ssh/authorized_keys",
+		"/Users/liushihao/Documents/svg editor 3/javascripts/interact.min.js",
+		"/Users/liushihao/Desktop/morph.html",
+		"/Users/liushihao/Desktop/kanji animation/kanji.html",
+		"/Users/liushihao/Desktop/index.html",
+		"/Users/liushihao/.profile",
+		"/Users/liushihao/.zshrc",
+		"/Users/liushihao/Downloads/solarized/osx-terminal.app-colors-solarized/xterm-256color/Solarized Dark xterm-256color.terminal",
+		"/Users/liushihao/Desktop/TableViewPractice/mogenerator.txt",
+		"/Users/liushihao/Library/Application Support/Sublime Text 3/Packages/User/Safari.sublime-build",
+		"/Users/liushihao/Desktop/text_engine.html",
+		"/Users/liushihao/Desktop/TableViewPractice/TableViewPractice/Model/model.json",
+		"/Users/liushihao/Desktop/TableViewPractice/Podfile",
+		"/Users/liushihao/Desktop/flow_test/test.js",
+		"/Users/liushihao/Desktop/flow_test/package.json",
+		"/Users/liushihao/Library/Application Support/Sublime Text 3/Packages/User/npmtest.sublime-build",
+		"/Users/liushihao/Desktop/flow_test/build/test.js",
+		"/Users/liushihao/Desktop/electron/main.js",
+		"/Users/liushihao/Downloads/marvel.json",
+		"/Users/liushihao/Downloads/16.svg",
+		"/Users/liushihao/Desktop/kanji.html",
+		"/Users/liushihao/Documents/blessed/app.js",
+		"/Users/liushihao/Desktop/homework_student/word_test.css",
+		"/Users/liushihao/Downloads/CSS_20160512/homework/word_test.html",
+		"/Users/liushihao/Downloads/CSS_20160512/homework/word_test.css",
+		"/Users/liushihao/Desktop/font homework 3/tofont.sh",
+		"/Users/liushihao/Downloads/glyphter-font/fonts/test.html",
+		"/Users/liushihao/Downloads/glyphter-font/fonts/Glyphter.svg",
+		"/Users/liushihao/Downloads/20160505_字體課_css/上課實作/src/Gilder_Levin.html",
+		"/Users/liushihao/Downloads/20160505_字體課_css/上課實作/src/Google_loading.html",
+		"/Users/liushihao/Downloads/20160505_字體課_css/上課實作/src/aeiou_woff.html",
+		"/Users/liushihao/Downloads/icomoon59907/demo.html",
+		"/Users/liushihao/Downloads/20160505_字體課_css/上課實作/src/Font_js.html",
+		"/Users/liushihao/Desktop/font homework 3/tcsvg/tjtc-x8352.svg",
+		"/Users/liushihao/Desktop/font homework 3/tcsvg/tjtc-x5b57.svg",
+		"/Users/liushihao/Desktop/font homework 3/tcsvg/tjtc-x5929.svg",
+		"/Users/liushihao/Downloads/20160505_字體課_css/上課實作/src/JavaScript_JIR.html",
+		"/Users/liushihao/Downloads/20160505_字體課_css/上課實作/src/Phark.html"
+	],
+	"find":
+	{
+		"height": 27.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+			"indent",
+			"positionOnDrawingPanel",
+			"doubleTapNode",
+			"selectedNodes",
+			"Node",
+			"svg",
+			"rigthKey",
+			"rightKey",
+			"in",
+			"32f33730",
+			"deleteNode",
+			"4cadab78-769a-11e6-8666-13428ea121b0",
+			"syn",
+			"handle",
+			"syn",
+			"pathString",
+			"pedicel",
+			"s",
+			"_createFlower",
+			"s",
+			"per",
+			"persent",
+			"env",
+			"path",
+			"text",
+			"prompt",
+			"theme",
+			"draw",
+			"M0",
+			"2px",
+			"1px",
+			"xxx",
+			"f99",
+			"#ffd",
+			"ffd"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": true,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "src/main.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 714,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								495,
+								495
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 27.0
+	},
+	"input":
+	{
+		"height": 34.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 321.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.unsaved_changes":
+	{
+		"height": 118.0
+	},
+	"pinned_build_system": "Packages/Default/Syntax Tests.sublime-build",
+	"project": "draw.sublime-project",
+	"replace":
+	{
+		"height": 50.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"tool",
+				"src/Tool.js"
+			],
+			[
+				"node",
+				"src/NodeController.js"
+			],
+			[
+				"eslin",
+				".eslintrc.json"
+			],
+			[
+				"test_pa",
+				"test/test_Model_Path.js"
+			],
+			[
+				"path",
+				"src/Entity/Path.js"
+			],
+			[
+				"sty",
+				"public/css/style.css"
+			],
+			[
+				"index",
+				"public/index.html"
+			],
+			[
+				"pack",
+				"package.json"
+			],
+			[
+				"src/main",
+				"src/main.js"
+			],
+			[
+				"p",
+				"src/Path.js"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": false,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 190.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

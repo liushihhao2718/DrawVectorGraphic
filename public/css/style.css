@@ -40,10 +40,13 @@
 	stroke-width:1;
 	fill:none;
 }
-
+rect.shadow {
+	fill:blueviolet;
+	opacity: 0.1;
+}
 .segment.shadow {
 	stroke:none;
-	stroke-width:6;
+	stroke-width:10;
 	fill:transparent;
 	pointer-events:all;
 }
