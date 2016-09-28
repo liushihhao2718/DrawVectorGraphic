@@ -5,7 +5,9 @@ import ToolFactory from './Tool/ToolFactory.js';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ToolList from './ViewModel/ToolList.jsx';
+import ToolList from './ReactTag/ToolList.jsx';
+import OtherButtonList from './ReactTag/OtherButtonList.jsx';
+
 init();
 
 function init(){
@@ -24,5 +26,11 @@ function init(){
 
 	pathController.render();
 
-	ReactDOM.render(<ToolList />, document.getElementById('button-list'));
+	ReactDOM.render(
+		(
+			<section className="grid">
+				<ToolList/>
+				<OtherButtonList/>
+			</section>
+		), document.getElementById('button-list'));
 }

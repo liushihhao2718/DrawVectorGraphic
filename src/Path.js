@@ -332,7 +332,13 @@ class Path{
 			error_code = code;
 		}
 	}
-
+	move(dx, dy){
+		for(let key of this.nodeMap.keys() ){
+			let node = this.nodeMap.get(key);
+			node.x += dx;
+			node.y += dy;
+		}
+	}
 	nodeMove(key, dx, dy) {
 		let node = this.nodeMap.get(key);
 

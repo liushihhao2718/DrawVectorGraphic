@@ -5,6 +5,7 @@ export default class PathController{
 		this.target = target;//append to svg
 		this.pathMap = new Map();
 		this.selectedNodes = new Set();
+		this.selectedPath = new Set();
 	}
 	toggleSelected(node){
 		node.select = !node.select;
@@ -56,17 +57,22 @@ export default class PathController{
 		let group = document.createElementNS(svgNS, 'g');
 		group.setAttribute('id', path.key);
 
-		for(let seg of path.renderSegment()){
-			this.makeSegment(seg, path.key,group);
+		if (path.selected) {
+			this.makeOnePath(path, group);
+			this.makeBBox(path, group);
 		}
-		for(let n of path.nodeMap.values()){
-			this.makeNode(n, path.key,group);
+		else{
+			for(let seg of path.renderSegment()){
+				this.makeSegment(seg, path,group);
+			}
+			for(let n of path.nodeMap.values()){
+				this.makeNode(n, path.key,group);
+			}
 		}
 
-		if (path.selected) this.makeBBox(path, group);
 		this.target.appendChild(group);
 	}
-	makeSegment(seg, path_key,group) {
+	makeSegment(seg, path,group) {
 		let d = '';
 		if(seg.length == 4){
 			let p1 = seg[0],
@@ -78,6 +84,8 @@ export default class PathController{
 			let control_Seg_1 = document.createElementNS(svgNS, 'path');
 			control_Seg_1.setAttribute('d', `M${p1.x},${p1.y} L${c1.x},${c1.y}`);
 			control_Seg_1.setAttribute('class','control_Seg');
+
+
 
 			let control_Seg_2 = document.createElementNS(svgNS, 'path');
 			control_Seg_2.setAttribute('d', `M${p2.x},${p2.y} L${c2.x},${c2.y}`);
@@ -93,19 +101,19 @@ export default class PathController{
 		}
 
 		let p = document.createElementNS(svgNS, 'path');
-		
 		p.setAttribute('class','segment');
-		p.setAttribute('path_key',path_key);
+		p.setAttribute('path_key',path.key);
 		p.setAttribute('start-node',seg[0].key);
 		p.setAttribute('end-node',seg[seg.length-1].key);
 		p.setAttribute('d', d);
-		let p_shadow = document.createElementNS(svgNS, 'path');
 
+		let p_shadow = document.createElementNS(svgNS, 'path');
 		p_shadow.setAttribute('class','segment shadow');
-		p_shadow.setAttribute('path_key',path_key);
+		p_shadow.setAttribute('path_key',path.key);
 		p_shadow.setAttribute('start-node',seg[0].key);
 		p_shadow.setAttribute('end-node',seg[seg.length-1].key);
 		p_shadow.setAttribute('d', d);
+
 		group.appendChild(p);
 		group.appendChild(p_shadow);
 
@@ -148,22 +156,21 @@ export default class PathController{
 
 		group.appendChild(node);
 	}
-	makeShadow(path, group){
+	makeOnePath(path, group){
 		let p = document.createElementNS(svgNS, 'path');
 		p.setAttribute('d', path.toString());
 		p.setAttribute('class', 'shadow');
 		group.appendChild(p);
 	}
 	makeBBox(path, group){
-		
-
 		let rect = document.createElementNS(svgNS, 'rect'),
 			bbox = path.bbox();
 		rect.setAttribute('x', bbox.x);
 		rect.setAttribute('y', bbox.y);
 		rect.setAttribute('width',  bbox.width);
 		rect.setAttribute('height', bbox.height);
-		rect.setAttribute('class', 'shadow');
+		rect.setAttribute('path_key',path.key);
+		rect.setAttribute('class', 'node shadow');
 		group.appendChild(rect);
 	}
 }

@@ -44,6 +44,11 @@ export default class MouseEventHanlder {
 		this.toolContext.tool.tapNode(event);
 		event.preventDefault();
 	}
+
+	dragGroup(){
+		this.toolContext.dragNode(event);
+		event.preventDefault();
+	}
 	holdNode(event) {
 		if (event.target.classList[0] !== 'node') return;
 		this.toolContext.tool.holdNode(event);

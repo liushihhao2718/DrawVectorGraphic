@@ -41,8 +41,15 @@
 	fill:none;
 }
 rect.shadow {
-	fill:blueviolet;
-	opacity: 0.1;
+	fill:none;
+	stroke-dasharray:5;
+	stroke: blueviolet;
+	pointer-events:all;
+}
+path.shadow {
+	fill:none;
+	stroke:#000;
+	stroke-width:1;
 }
 .segment.shadow {
 	stroke:none;

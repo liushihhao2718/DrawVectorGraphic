@@ -10,19 +10,19 @@ class ToolList extends React.Component {
 			'group': 'Group (G)'
 		};
 
-		let buttons = createButtons();
+		let buttons = toolButtons();
 
 		return (
-			<section className="grid">
+			<section className='grid'>
 				{buttons}
 			</section>
 		);
 
-		function createButtons(){
+		function toolButtons(){
 			return Object.keys(ToolFactory.getContext().tools)
 					.map((k)=>{
 						return (
-							<ToolButton key={shortid.generate()}tool={k}>
+							<ToolButton key={shortid.generate()} tool={k}>
 								{btn_text[k]}
 							</ToolButton>
 						);

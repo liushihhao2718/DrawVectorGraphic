@@ -4,14 +4,22 @@ export default class GroupTool{
 		this.tag = document.getElementById('tool');
 	}
 
-	tapNode(){}
+	tapNode(){
+		let path = this.delegate.getPath(event);
+		this.delegate.selectPath(path.key);
+		this.delegate.render();
+	}
 
 	tapBackground(){
 	}
 	
 	holdNode(){}
 
-	dragNode(){}
+	dragNode(event){
+		let path = this.delegate.getPath(event);
+		path.move(event.dx, event.dy);
+		this.delegate.render();
+	}
 
 	tapPath(event){
 		let path = this.delegate.getPath(event);
