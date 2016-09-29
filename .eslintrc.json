@@ -1,4 +1,7 @@
 {
+    "plugins": [
+        "react"
+    ],
     "env": {
         "browser": true,
         "es6": true
@@ -13,7 +16,7 @@
     "globals":{
         "require":true
     },
-    "extends": "eslint:recommended",
+    "extends": ["eslint:recommended", "plugin:react/recommended"],
     "rules": {
         "indent": [
             "error",
