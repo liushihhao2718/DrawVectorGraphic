@@ -13,8 +13,9 @@ export default class MouseEventHanlder {
 			.on('click', this.tapNode.bind(this))//不bind的話nodeTap裡的this會變別人
 			.on('hold', this.holdNode.bind(this));
 
-		interact('.segment').
-			on('click', this.tapSegment.bind(this));
+		interact('.segment')
+			.on('click', this.tapSegment.bind(this))
+			.on('doubletap', this.doubletapSegment.bind(this));
 
 		interact('#drawing_panel')
 			.on('click', this.tapBackground.bind(this));
@@ -62,5 +63,10 @@ export default class MouseEventHanlder {
 	tapSegment(event){
 		if (event.target.nodeName !== 'path') return;
 		this.toolContext.tool.tapPath(event);
+	}
+	doubletapSegment(event){
+		if (event.target.nodeName !== 'path') return;
+		this.toolContext.tool.doubleTapPath(event);
+		event.preventDefault();
 	}
 }

@@ -14,6 +14,7 @@ export default class Tool{
 	dragNode(){}
 
 	tapPath(){}
+	doubleTapPath(){}
 
 	switch(){}
 	mount(){

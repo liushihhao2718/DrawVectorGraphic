@@ -16,8 +16,8 @@ function init(){
 	let svg = document.getElementById('drawing_panel'),
 		pathController = new PathController(),
 		renderer = new Renderer(svg, pathController);
-
 	pathController.renderer = renderer;
+	
 	svg.setAttribute('width', '800');
 	svg.setAttribute('height','600');
 

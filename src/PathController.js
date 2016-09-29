@@ -15,18 +15,30 @@ export default class PathController{
 			this.selectedNodes.delete(node);
 		}
 	}
-	selectPath(pathKey){
-		let path = this.pathMap.get(pathKey);
+	toggleSelectPath(path){
 		path.selected = !path.selected;
+
+		if (path.selected) {
+			this.selectedPath.add(path);
+		}
+		else{
+			this.selectedPath.delete(path);
+		}
 	}
-	cleanSelectedNodes(){
+	cleanSelected(){
+		for(let p of this.selectedPath){
+			p.selected = false;
+		}
+
 		for(let n of this.selectedNodes){
 			n.select = false;
 		}
 		this.selectedNodes.clear();
+		this.selectedPath.clear();
 	}
 	getNode(event) {
-		let path = this.pathMap.get(event.target.getAttribute('path_key'));
+		let key = event.target.getAttribute('path_key');
+		let path = this.pathMap.get(key);
 		return path.nodeMap.get(event.target.id);
 	}
 	getPath(event){

@@ -2,8 +2,16 @@ import Tool from './Tool';
 export default class SelectTool extends Tool{
 
 	tapNode(event){
-		let node = this.delegate.getNode(event);
-		this.delegate.toggleSelected(node);
+
+		let path = this.delegate.getPath(event);
+		if (path.selected) {
+			this.delegate.toggleSelectPath(path);
+		}
+		else{
+			let node = this.delegate.getNode(event);
+			this.delegate.toggleSelected(node);
+		}
+		
 		this.delegate.render();
 	}
 	holdNode(event){
@@ -23,14 +31,25 @@ export default class SelectTool extends Tool{
 			this.delegate.render();
 		}
 	}
+	doubleTapPath(){
+		let path = this.delegate.getPath(event);
+		this.delegate.toggleSelectPath(path);
+		this.delegate.render();
+	}
 	tapBackground(){
-		this.delegate.cleanSelectedNodes();
+		this.delegate.cleanSelected();
 		this.delegate.render();
 	}
 	
 	dragNode(event){
 		let path = this.delegate.getPath(event);
-		path.nodeMove(event.target.id, event.dx, event.dy);
+
+		if (path.selected) {
+			path.move(event.dx, event.dy);
+		}
+		else{
+			path.nodeMove(event.target.id, event.dx, event.dy);
+		}
 		this.delegate.render();
 	}
 }
