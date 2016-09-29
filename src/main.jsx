@@ -2,6 +2,7 @@ import PathController from './PathController';
 import MouseEventHanlder from './MouseEventHanlder';
 // import ButtonEventHandler from './ButtonEventHandler';
 import ToolFactory from './Tool/ToolFactory.js';
+import Renderer from './Renderer';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -13,8 +14,10 @@ init();
 function init(){
 	
 	let svg = document.getElementById('drawing_panel'),
-		pathController = new PathController(svg);
+		pathController = new PathController(),
+		renderer = new Renderer(svg, pathController);
 
+	pathController.renderer = renderer;
 	svg.setAttribute('width', '800');
 	svg.setAttribute('height','600');
 
