@@ -1,3 +1,7 @@
+#drawing_panel {
+	border-style:dashed;
+}
+
 .rect {
 	fill: none;
 	stroke-width: 1;
@@ -10,6 +14,10 @@
 	stroke-width: 1;
 	stroke: green;
 	pointer-events:all;
+}
+
+.circle.select {
+	fill: green;
 }
 
 .offcurve {
@@ -29,6 +37,23 @@
 
 .segment {
 	stroke:#000;
-	stroke-width:2;
+	stroke-width:1;
 	fill:none;
+}
+rect.shadow {
+	fill:none;
+	stroke-dasharray:5;
+	stroke: blueviolet;
+	pointer-events:all;
+}
+path.shadow {
+	fill:none;
+	stroke:#000;
+	stroke-width:1;
+}
+.segment.shadow {
+	stroke:none;
+	stroke-width:10;
+	fill:transparent;
+	pointer-events:all;
 }
