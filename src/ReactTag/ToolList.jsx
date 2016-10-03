@@ -32,9 +32,7 @@ class ToolList extends React.Component {
 }
 
 class ToolButton extends React.Component {
-	constructor(props){
-		super(props);
-	}
+	
 	switch(){
 		ToolFactory.getContext().switchTool(this.props.tool);
 	}
@@ -49,4 +47,9 @@ class ToolButton extends React.Component {
 		);
 	}
 }
+
+ToolButton.propTypes = {
+	key: React.PropTypes.string.isRequired,
+	tool: React.PropTypes
+};
 export default ToolList;

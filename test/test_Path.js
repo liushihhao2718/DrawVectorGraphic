@@ -1,132 +1,157 @@
 import test from 'ava';
-import Point from '../src/Model/Point.js';
-import Path from '../src/Model/Path/Path.js';
-import {LineCommand, CurveCommand} from '../src/Model/Path/Command.js';
+import {Node, Path} from '../src/Path';
 
-let p1 = new Point(10, 10),
-	p2 = new Point(20, 20);
+test('make a Node', t=>{
+	let test_node = new Node(10,10,'curve'),
+		checkString = '10 10 curve';
 
-test('test Command', t=>{
-	let line = new LineCommand(),
-		curve = new CurveCommand(p1, p2);
+	t.true(test_node.toString() === checkString);
+});
+function make_test_path(close = true){
+	let n0 = new Node(100, 100, 'curve'),
+		n1 = new Node(50, 150, 'offcurve'),
+		n2 = new Node(200, 150, 'offcurve'),
+		n3 = new Node(250, 100, 'smooth'),
+		n4 = new Node(300, 70, 'offcurve'),
+		n5 = new Node(350, 150, 'offcurve'),
+		n6 = new Node(400, 100, 'curve'),
+		n7 = new Node(380, 50, 'curve'),
+		n8 = new Node(250, 50, 'curve');
 
-	t.true( line instanceof LineCommand);
-	t.true(curve.p1 === p1);
-	t.true(curve.p2 === p2);
+	return new Path([n0,n1,n2,n3,n4,n5,n6,n7,n8], close);
+}
+test('make a close Path with nodes', t=>{
+
+	let path_close = true,
+		path = make_test_path(path_close),
+		handle = path.head;
+	t.true(path.nodeMap.get(handle).toString() === '100 100 curve');
+	handle = path.nodeMap.get(handle).next;
+	t.true(path.nodeMap.get(handle).toString() === '50 150 offcurve');
+
+	handle = path.tail;
+	t.true(path.nodeMap.get(handle).toString() === '100 100 curve');
+
+	handle = path.nodeMap.get(handle).prev;
+	t.true(path.nodeMap.get(handle).toString() === '250 50 curve');
 });
 
-test('make a Line', t=> {
-	let test_path = new Path(p1, p2, 'Line');
+test('make a close Path with nodes 2', t=>{
 
-	t.true(test_path.points.length === 2);
-	t.true(test_path.commands.length === 1);
 
-	t.true(test_path.points[0] === p1 );
-	t.true(test_path.points[1] === p2 );
-	t.true( test_path.commands[0] instanceof LineCommand);
+	let n0 = new Node(100, 100, 'curve'),
+		n1 = new Node(50, 150, 'offcurve'),
+		n2 = new Node(200, 150, 'offcurve'),
+		n3 = new Node(250, 100, 'smooth'),
+		n4 = new Node(300, 70, 'offcurve'),
+		n5 = new Node(350, 150, 'offcurve'),
+		n6 = new Node(400, 100, 'curve'),
+		n7 = new Node(380, 50, 'curve'),
+		n8 = new Node(250, 50, 'curve'),
+		path = new Path([n0,n1,n2,n3,n4,n5,n6,n7,n8], true),
+		d = 'M100,100 C50,150 200,150 250,100 C300,70 350,150 400,100 L380,50 L250,50 L100,100';
+
+	t.true(path.toString() === d);
+
 });
 
-test('append LineCommand', t=>{
-	let test_path = new Path(p1, p2, 'Line'),
-		p3 = new Point(30, 10);
+test('curve between tail and head', t=>{
 
-	test_path.appendLineWithPoint(p3);
 
-	/*
-	三個點 兩個Line Command
-	*	[p1, p2, p3]
-		[  L,  L   ]
-	*/
-	t.true(test_path.points.length === 3);
-	t.true(test_path.commands.length === 2);
+	let n0 = new Node(100, 100, 'curve'),
+		n1 = new Node(50, 150, 'offcurve'),
+		n2 = new Node(200, 150, 'offcurve'),
+		n3 = new Node(250, 100, 'smooth'),
+		n4 = new Node(300, 70, 'offcurve'),
+		n5 = new Node(350, 150, 'offcurve'),
+		path = new Path([n0,n1,n2,n3,n4,n5], true),
+		d = 'M100,100 C50,150 200,150 250,100 C300,70 350,150 100,100';
+	t.true(path.toString() === d);
 
-	t.true(test_path.points[0] === p1 );
-	t.true(test_path.points[1] === p2 );
-	t.true(test_path.points[2] === p3 );
-	t.true( test_path.commands[0] instanceof LineCommand);
-	t.true( test_path.commands[1] instanceof LineCommand);
 });
 
-test('make polyline with random points', t=>{
-	let pointArray = [p1, p2],
-		linePath = new Path(p1, p2, 'Line');
-	for (let i = 0; i < 10; i++) {
-		let p = makeRandomPoint();
-		pointArray.push(p);
-		linePath.appendLineWithPoint(p);
-	}
-	for (let i = 0; i < pointArray.length; i++) {
-		t.true( linePath.points[i] === pointArray[i] );
-		if (i > 0) {
-			t.true( linePath.commands[i-1] instanceof LineCommand );
+test('make a open Path with nodes', t=>{
+
+	let path_close = false,
+		path = make_test_path(path_close),
+		d = 'M100,100 C50,150 200,150 250,100 C300,70 350,150 400,100 L380,50 L250,50';
+
+	t.true(path.toString() === d);
+});
+
+test('add node to open path', t=>{
+	let path = make_test_path(false),
+		d = 'M100,100 C50,150 200,150 250,100 C300,70 350,150 400,100 L380,50 L250,50 L10,10';
+
+	path.addPoint(10,10);
+
+	t.true(path.toString() === d);
+});
+
+test('delete head node in open path', t=>{
+	const path = make_test_path(false),
+		d = 'M250,100 C300,70 350,150 400,100 L380,50 L250,50';
+	
+	path.deleteNode(path.head);
+	t.true(path.toString() === d);
+});
+
+test('delete tail node in open path', t=>{
+	const path = make_test_path(false),
+		d = 'M100,100 C50,150 200,150 250,100 C300,70 350,150 400,100 L380,50';
+	
+	path.deleteNode(path.tail);
+	t.true(path.toString() === d);
+});
+
+test('delete curve node open path', t=>{
+	const path = make_test_path(false),
+		d = 'M100,100 C50,150 350,150 400,100 L380,50 L250,50';
+
+	let iter = path.nodeMap.keys();
+	iter.next();
+	iter.next();
+	iter.next();
+	const k3 = iter.next().value;
+	path.deleteNode(k3);
+	t.true(path.toString() === d);
+});
+
+test('make segments', t=>{
+	const path = make_test_path(true);
+	let str = '';
+	for(let seg of path.renderSegment()){
+		let d = '[';
+		for(let n of seg){
+			d += n.toString();
+			d += ', ';
 		}
+		d+=']\t';
+		str +=d;
 	}
 
-	function makeRandomPoint() {
-		let x = oneToTen(),
-			y = oneToTen();
-
-		return new Point(x, y);
-	}
-	function oneToTen() {
-		return Math.floor((Math.random() * 10) + 1);
-	}
+	let check = 
+	'[100 100 curve, 50 150 offcurve, 200 150 offcurve, 250 100 smooth, ]\
+	[250 100 smooth, 300 70 offcurve, 350 150 offcurve, 400 100 curve, ]\
+	[400 100 curve, 380 50 curve, ]\
+	[380 50 curve, 250 50 curve, ]\
+	[250 50 curve, 100 100 curve, ]\t';
+	t.true(str === check);
 });
 
-test('make line to curve', t=>{
-	//p L p L p => p C p L p
-	//p: 頂點 C:貝茲控制指令
-	//預設建立於線上四分之一處
+test('move offcurve beside smooth node', t=>{
+	const path = make_test_path(true);
+	let iter = path.nodeMap.keys();
+	iter.next();
+	iter.next();
+	const k2 = iter.next().value;
 
-	let test_path = new Path(p1, p2, 'Line'),
-		p3 = new Point(30, 10);
-	test_path.appendLineWithPoint(p3);
+	let off1 = path.getNode(k2),
+		smooth = path.getNode(off1.next),
+		off2 = path.getNode(smooth.next);
 
-
-	let c1 = makeControlPoint(p1, p2),
-		c2 = makeControlPoint(p2, p1),
-		curve = new CurveCommand(c1, c2);
-	test_path.makeCurveWithCommandAtIndex(curve, 0);
-
-	t.true( test_path.commands.length === 2);
-	t.true( test_path.commands[0] instanceof CurveCommand);
-	t.true( test_path.commands[1] instanceof LineCommand);
-
-	function makeControlPoint(p1, p2) {
-		return new Point(quartile(p1.x, p2.x),
-				quartile(p1.y, p2.y));
-	}
-	// 1/4
-	function quartile(a, b) {
-		return (a + 3*b) /4;
-	}
-});
-
-test('make curve to line', t=>{
-	//p L p L p => p C p L p
-	//p: 頂點 C:貝茲控制指令
-	//預設建立於線上四分之一處
-
-	let test_path = new Path(p1, p2, 'Line'),
-		p3 = new Point(30, 10);
-	test_path.appendLineWithPoint(p3);
+	path.nodeMove(off1.key, 10, 10);
+	t.true(off2.toString() === '282 51 offcurve');
 
 
-	let c1 = makeControlPoint(p1, p2),
-		c2 = makeControlPoint(p2, p1),
-		curve = new CurveCommand(c1, c2);
-	test_path.makeCurveWithCommandAtIndex(curve, 0);
-
-	t.true( test_path.commands.length === 2);
-	t.true( test_path.commands[0] instanceof CurveCommand);
-	t.true( test_path.commands[1] instanceof LineCommand);
-
-	function makeControlPoint(p1, p2) {
-		return new Point(quartile(p1.x, p2.x),
-				quartile(p1.y, p2.y));
-	}
-	// 1/4
-	function quartile(a, b) {
-		return (a + 3*b) /4;
-	}
 });

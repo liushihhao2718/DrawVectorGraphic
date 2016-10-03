@@ -1,5 +1,7 @@
 let shortid = require( 'shortid');
 
+import {Component} from './Component';
+
 class Node {
 	constructor(x, y, type = 'curve'){
 		this.key =  shortid.generate();
@@ -17,8 +19,10 @@ class Node {
 	}
 }
 
-class Path{
+class Path extends Component{
 	constructor(nodes, closed = true){
+		super();
+
 		this.key = shortid.generate();
 
 		this.nodeMap = new Map();
@@ -27,6 +31,12 @@ class Path{
 		this.selected = false;
 
 		this.link(nodes, closed);
+	}
+	accept(visitor){
+		visitor.visitPath(this);
+	}
+	getNode(key){
+		return this.nodeMap.get(key);
 	}
 	bbox(){
 		let lux = Number.MAX_VALUE,
