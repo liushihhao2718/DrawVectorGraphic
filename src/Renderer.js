@@ -1,9 +1,29 @@
 const svgNS = 'http://www.w3.org/2000/svg';
+import ComponentVisitor from './ComponentVisitor';
 
 export default class Renderer{
 	constructor(target, scene){
 		this.target = target;//append to svg
 		this.scene = scene;
+	}
+
+	renderByVisitor(){
+		let visitor = new ComponentVisitor();
+
+		for(let el of this.scene) {
+			el.accept(visitor);
+		}
+	}
+
+	visitPath(path){
+		console.log(path.toString());
+	}
+	willVisitComposite(composite){
+		console.log('[');
+	}
+
+	didVisitComposite(composite){
+		console.log(']');
 	}
 	render(){
 		while (this.target.firstChild) {
