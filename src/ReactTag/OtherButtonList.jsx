@@ -6,9 +6,11 @@ export default class OtherButtonList extends React.Component {
 		let btn_text = {
 			'image':'image'
 		};
-
+		let style = {
+			'display':'flex'
+		};
 		return (
-			<section className='grid'>
+			<section style={style}>
 				{buttons()}
 			</section>
 		);
@@ -29,9 +31,7 @@ class OtherButton extends React.Component {
 	render(){
 		return (
 		<div>
-			<button>
-				{this.props.children}
-			</button>
+			<button>{this.props.children}</button>
 		</div>
 		);
 	}

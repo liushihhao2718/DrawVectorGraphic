@@ -9,11 +9,13 @@ class ToolList extends React.Component {
 			'pen' : 'Pen (P)',
 			'group': 'Group (G)'
 		};
-
+		let style = {
+			'display':'flex'
+		};
 		let buttons = toolButtons();
 
 		return (
-			<section className='grid'>
+			<section style={style}>
 				{buttons}
 			</section>
 		);
@@ -39,17 +41,14 @@ class ToolButton extends React.Component {
 	render(){
 		let self = this;
 		return (
-		<div>
 			<button onClick={self.switch.bind(self)}>
 				{self.props.children}
 			</button>
-		</div>
 		);
 	}
 }
 
 ToolButton.propTypes = {
-	key: React.PropTypes.string.isRequired,
-	tool: React.PropTypes
+	tool: React.PropTypes.string
 };
 export default ToolList;

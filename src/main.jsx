@@ -7,8 +7,7 @@ import Renderer from './Renderer';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ToolList from './ReactTag/ToolList.jsx';
-import OtherButtonList from './ReactTag/OtherButtonList.jsx';
-
+import OffsetButton from './ReactTag/OffsetButton.jsx';
 init();
 
 function init(){
@@ -30,10 +29,9 @@ function init(){
 	pathController.render();
 
 	ReactDOM.render(
-		(
-			<section className="grid">
-				<ToolList/>
-				<OtherButtonList/>
-			</section>
+		(<div>
+			<ToolList/>
+			<OffsetButton>offset</OffsetButton>
+		</div>
 		), document.getElementById('button-list'));
 }

@@ -1,7 +1,6 @@
 #drawing_panel {
 	border-style:dashed;
 }
-
 .rect {
 	fill: none;
 	stroke-width: 1;

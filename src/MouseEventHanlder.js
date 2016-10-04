@@ -20,6 +20,15 @@ export default class MouseEventHanlder {
 		interact('#drawing_panel')
 			.on('click', this.tapBackground.bind(this));
 
+		interact('.image').draggable({
+			onmove:function(){
+				let x = event.target.getAttribute('x'),
+					y = event.target.getAttribute('y');
+				event.target.setAttribute('x', Number(x) + Number(event.dx));
+				event.target.setAttribute('y', Number(y) + Number(event.dy));
+			}
+		});
+
 		this.codeMap = new Map();
 		this.codeMap.set(83, 'select');//Ss
 		this.codeMap.set(80, 'pen');//Pp

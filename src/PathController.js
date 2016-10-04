@@ -1,9 +1,13 @@
+import Offset from './Offset';
+import {Node, Path} from './Path';
+import Notification from './Notification';
 
 export default class PathController{
 	constructor(){
 		this.pathMap = new Map();
 		this.selectedNodes = new Set();
 		this.selectedPath = new Set();
+		Notification.on('offset', this.makeOffset.bind(this));
 	}
 	toggleSelected(node){
 		node.select = !node.select;
@@ -24,6 +28,25 @@ export default class PathController{
 		else{
 			this.selectedPath.delete(path);
 		}
+	}
+	makeOffset(){
+		for(let path of this.selectedPath){
+
+			let points = Array.from(path.nodeMap.values());
+			let offset_points = Offset(points.map((n)=>{
+				return {
+					x : n.x,
+					y :n.y
+				};
+			}), 10);
+			let nodes = [];
+			points.forEach((el, index)=>{
+				nodes.push(new Node(offset_points[index].x, offset_points[index].y, el.type));
+			});
+			let p = new Path(nodes, true);
+			this.setPath(p);
+		}
+		this.render();
 	}
 	cleanSelected(){
 		for(let p of this.selectedPath){
