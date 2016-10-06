@@ -32,7 +32,7 @@ export default class PathController{
 	makeOffset(){
 		for(let path of this.selectedPath){
 
-			let points = Array.from(path.nodeMap.values());
+			let points = path.nodes();
 			let offset_points = Offset(points.map((n)=>{
 				return {
 					x : n.x,

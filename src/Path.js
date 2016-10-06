@@ -38,6 +38,18 @@ class Path extends Component{
 	getNode(key){
 		return this.nodeMap.get(key);
 	}
+	nodes(){
+		let array = [];
+		let round = this.nodeMap.size;
+		let key = this.head;
+		for(let i=0;i<round;i++){
+			let node = this.getNode(key);
+			array.push(node);
+			key = node.next;
+		}
+
+		return array;
+	}
 	bbox(){
 		let lux = Number.MAX_VALUE,
 			luy = Number.MAX_VALUE,
@@ -428,10 +440,12 @@ class Path extends Component{
 		this.nodeMap.set(c2.key, c2);
 
 		p1.next = c1.key;
+
 		c1.prev = p1.key;
 		c1.next = c2.key;
 		c2.prev = c1.key;
 		c2.next = p2.key;
+
 		p2.prev = c2.key;
 
 	}

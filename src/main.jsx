@@ -27,9 +27,11 @@ function init(){
 	mouseEvent.setListener();
 
 	pathController.render();
-
+	let style = {
+		'display':'flex'
+	};
 	ReactDOM.render(
-		(<div>
+		(<div style={style}>
 			<ToolList/>
 			<OffsetButton>offset</OffsetButton>
 		</div>

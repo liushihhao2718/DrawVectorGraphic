@@ -3,7 +3,7 @@ import math from 'mathjs';
 export default function intersect(points, d){
 	let offsets = [];
 	let l = points.length;
-	for(let i =1;i<= l; i++) {
+	for(let i =0;i< l; i++) {
 		let a = offsetedLine( points[(i-1+l)%l], points[i], d);
 		let b = offsetedLine( points[i], points[(i+1)%l], d);
 

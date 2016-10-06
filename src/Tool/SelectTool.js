@@ -31,7 +31,7 @@ export default class SelectTool extends Tool{
 			this.delegate.render();
 		}
 	}
-	doubleTapPath(){
+	doubleTapPath(event){
 		let path = this.delegate.getPath(event);
 		this.delegate.toggleSelectPath(path);
 		this.delegate.render();
