@@ -1,6 +1,5 @@
 import PathController from './PathController';
 import MouseEventHanlder from './MouseEventHanlder';
-// import ButtonEventHandler from './ButtonEventHandler';
 import ToolFactory from './Tool/ToolFactory.js';
 import Renderer from './Renderer';
 
