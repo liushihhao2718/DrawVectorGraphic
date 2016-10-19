@@ -1,4 +1,6 @@
 import React from 'react';
+
+//<Curve path={path} lock={false}/>
 export default class Curve extends React.Component {
 	render(){
 		let segments = [];
@@ -24,6 +26,11 @@ export default class Curve extends React.Component {
 		return tags;
 	}
 }
+
+Curve.propTypes = {
+	path: React.PropTypes.object,
+	lock:React.PropTypes.bool
+};
 
 function isLine(segment){
 	return segment.length == 2;
@@ -56,9 +63,3 @@ function pushControlPath (ctrl) {
 		<path className='segment' d={ctrl[1]}/>
 	];	
 }
-
-Curve.propTypes = {
-	path: React.PropTypes.object,
-	lock:React.PropTypes.bool
-};
-//<Curve path={path} selected={false} lock={false}/>
