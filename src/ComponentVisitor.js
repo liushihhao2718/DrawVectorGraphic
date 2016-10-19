@@ -1,7 +1,15 @@
-export default class ComponentVisitor{
+class ComponentVisitor{
+
+	visitPath(){}
+	willVisitComposite(){}
+	didVisitComposite(){}
+}
+
+class RenderVisitor{
 	constructor(delegate){
 		this.delegate = delegate;
 	}
+	
 	visitPath(path){
 		this.delegate.visitPath(path);
 	}
@@ -12,3 +20,6 @@ export default class ComponentVisitor{
 		this.delegate.didVisitComposite(composite);
 	}
 }
+
+export default ComponentVisitor;
+export {RenderVisitor};

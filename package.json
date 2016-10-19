@@ -14,20 +14,20 @@
   "devDependencies": {
     "ava": "^0.16.0",
     "babel-plugin-transform-flow-strip-types": "^6.8.0",
-    "babelify": "^7.3.0",
-    "watchify": "3.7.0",
     "babel-preset-react": "6.1.18",
+    "babelify": "^7.3.0",
+    "eslint-plugin-react": "*",
+    "jsx-test-helpers": "^1.1.0",
     "react": "*",
-    "react-dom": "*",
-    "eslint-plugin-react": "*"
+    "react-dom": "^15.3.2",
+    "watchify": "3.7.0"
   },
   "dependencies": {
     "doubly-linked-list-js": "^0.1.8",
     "event-emitter": "^0.3.4",
     "interact.js": "^1.2.6",
     "mathjs": "^3.4.1",
-    "shortid": "^2.2.6",
-    "snapsvg": "^0.4.0"
+    "shortid": "^2.2.6"
   },
   "ava": {
     "files": [
