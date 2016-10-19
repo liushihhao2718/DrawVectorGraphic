@@ -6,7 +6,7 @@ import {renderJSX, JSX} from 'jsx-test-helpers';
 import Curve from '../src/ReactTag/Curve.jsx';
 import Component from '../src/ReactTag/Component.jsx';
 import {Composite} from '../src/Component';
-
+import {RenderVisitor} from '../src/ComponentVisitor';
 test('render locked curve', t=>{
 
 	let n0 = new Node(100, 100, 'curve'),
@@ -49,6 +49,12 @@ test('make composite tag', t=>{
 		tag = renderJSX(
 			<Component component={composite} />
 		);
+	
+	const
+		targetDOM = JSX(<svg />),
+		visitor = new RenderVisitor( targetDOM );
+	
+	composite.accept(visitor);
 
 	const expected = renderJSX(
 		<g id={composite.key} lock={true}>
