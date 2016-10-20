@@ -1,3 +1,5 @@
+let shortid = require('shortid');
+
 class Component {
 	add(){}
 	remove(){}
@@ -8,7 +10,7 @@ class Component {
 class Composite extends Component{
 	constructor(...args){
 		super();
-
+		this.key =  shortid.generate();
 		this.childs = new Map();
 
 		for(let c of args) {

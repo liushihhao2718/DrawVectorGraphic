@@ -4,7 +4,6 @@ import {Node, Path} from '../src/Path';
 import React from 'react';
 import {renderJSX, JSX} from 'jsx-test-helpers';
 import Curve from '../src/ReactTag/Curve.jsx';
-import Component from '../src/ReactTag/Component.jsx';
 import {Composite} from '../src/Component';
 import {RenderVisitor} from '../src/ComponentVisitor';
 test('render locked curve', t=>{
@@ -45,23 +44,18 @@ function make_2_test_path(){
 
 test('make composite tag', t=>{
 	let { path1, path2 } = make_2_test_path(),
-		composite = new Composite(path1, path2),
-		tag = renderJSX(
-			<Component component={composite} />
-		);
-	
-	const
-		targetDOM = JSX(<svg />),
-		visitor = new RenderVisitor( targetDOM );
-	
+		composite = new Composite(path1, path2);
+		
+	const visitor = new RenderVisitor();
 	composite.accept(visitor);
 
-	const expected = renderJSX(
-		<g id={composite.key} lock={true}>
-			<Curve path={path1} lock={true}/>
-			<Curve path={path2} lock={true}/>
-		</g>
-	);
+	const tag = JSX(visitor.result),
+		expected = JSX(
+			<g id={composite.key} lock={true}>
+				<Curve path={path1} lock={true}/>
+				<Curve path={path2} lock={true}/>
+			</g>
+		);
 
-	t.is(tag, expected);
+	t.is(tag, expected);	
 });
