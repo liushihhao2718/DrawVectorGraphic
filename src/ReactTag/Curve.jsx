@@ -7,7 +7,7 @@ export default class Curve extends React.Component {
 		for(let seg of this.props.path.renderSegment())
 			segments.push( this.makeSegment(seg) );
 		
-		return (<g id={this.props.path.key}>{segments}</g>);
+		return (<g>{segments}</g>);
 	}
 
 	makeSegment(seg) {

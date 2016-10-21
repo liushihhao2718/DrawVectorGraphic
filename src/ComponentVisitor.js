@@ -30,7 +30,7 @@ class RenderVisitor{
 		}
 		this._removeComp();
 		this.results.push(
-			<g id={composite.key} lock={true}>
+			<g lock={true}>
 				{child.reverse()}
 			</g>
 		);
